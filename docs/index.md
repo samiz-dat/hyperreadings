@@ -55,7 +55,15 @@ When running Dat Library, a person will see their list of libraries. These can b
 
 ### Accessibility
 
-In the world of the web, durability is synonymous with accessibility - if something can't be accessed, it doesn't exist. Here, we disentangle the two in order to consider access independent from questions of resilience. When you have created a new library in Dat, a unique 64-digit key will automatically be generated for it. In order for someone else to see that library you have created, you must provide them with that key (by email, chat, on paper, or you could publish it on your website). In short, _you_ manage access to the library by copying that key; and then every key holder also manages access _ad infinitum_.
+In the world of the web, durability is synonymous with accessibility - if something can't be accessed, it doesn't exist. Here, we disentangle the two in order to consider access independent from questions of resilience. When you have created a new library in Dat, a unique 64-digit "key" will automatically be generated for it. In order for someone else to see that library you have created, you must provide them with that key (by email, chat, on paper, or you could publish it on your website). In short, _you_ manage access to the library by copying that key; and then every key holder also manages access _ad infinitum_.
+
+How is this any different from knowing the domain name of a website? If a site isn't indexed by Google and has a suitably un-guessable domain name, then isn't that effectively the same degree of privacy? Yes, and this is precisely why the metaphor of the key is so apt (with whom do you share the key to your apartment?) but also why it is limited. With the key, one not only has access to enter the library, but access to completely reproduce the library.
+
+This complete reproduction also has its limits. [multiwriter...]
+
+For some communities, it is important to both be able to determine who has access to their archives and to continue to have access themselves. [BF: could you elaborate here?]
+
+
 
 ### Adoptability (ability to use/ modify as one’s own)
 
@@ -63,6 +71,7 @@ In the world of the web, durability is synonymous with accessibility - if someth
 ### Thorunka
 ### Academia.edu alternative
 ### Syllabus
+### Publication format
 ### Self-education
 
 ## Proposition
