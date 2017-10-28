@@ -37,7 +37,11 @@ While the massive digital archives listed above (library.nu, Library Genesis, Sc
 
 ## Archival properties
 
-So far, the emphasis of this README has been on _durability_; and the "accidents of the archive" have been instances of destruction and loss. The persistence of an archive is, however, no guarantee of its _accessibility_, a common reality in digital libraries where access management is ubiquitous. Official institutions police access to their archives vigilantly for the ostensible purpose of preservation, but ultimately creating a rarified relationship between the archives and their publics. Disregarding this precious tendency, we also introduce _adoptability_ as a fundamental consideration in the making of Dat Library and HyperReadings.
+So far, the emphasis of this README has been on _durability_; and the "accidents of the archive" have been instances of destruction and loss. The persistence of an archive is, however, no guarantee of its _accessibility_, a common reality in digital libraries where access management is ubiquitous. Official institutions police access to their archives vigilantly for the ostensible purpose of preservation, but ultimately creating a rarified relationship between the archives and their publics. Disregarding this precious tendency, we also introduce _adaptability_ as a fundamental consideration in the making of the projects, Dat Library and HyperReadings.
+
+To adapt is to fit something for a new purpose. It emphasizes that the archive is not a dead object of research but a set of possible tools waiting to be activated in new circumstances. This is always a possibility of an archive, but we want to treat this possibility as desirable, as the horizon towards which these projects move. We know how infrastructures can attenuate desire and simply just make things difficult. We want to actively encourage radical reuse.
+
+In the following section, we don't define these properties but rather discuss how we implement (or fail to implement) them in software, while highlighting some of the potential difficulties introduced.
 
 ### Durability (being reliable, redundant, etc.)
 ### Accessibility (ability to access)
