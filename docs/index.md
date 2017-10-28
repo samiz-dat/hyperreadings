@@ -35,6 +35,8 @@ So what happens to these minor libraries? They are innumerable, but for the sake
 
 While the massive digital archives listed above (library.nu, Library Genesis, Sci-Hub, etc.) could play the role of the library of libraries, they tend to be defined more as sites for [biblioleaks](https://www.jmir.org/2014/4/e112/). Furthermore, given the vulnerability of  these archives, we ought to look for alternative approaches that do not rule out using their resources, but also do not _depend_ on them.
 
+Dat Library takes the concept of "a library of libraries" not to manifest it in a single, universal library, but to realize it progressively and partially with different individuals, groups, and institutions.
+
 ## Archival properties
 
 So far, the emphasis of this README has been on _durability_; and the "accidents of the archive" have been instances of destruction and loss. The persistence of an archive is, however, no guarantee of its _accessibility_, a common reality in digital libraries where access management is ubiquitous. Official institutions police access to their archives vigilantly for the ostensible purpose of preservation, but ultimately creating a rarified relationship between the archives and their publics. Disregarding this precious tendency, we also introduce _adaptability_ as a fundamental consideration in the making of the projects, Dat Library and HyperReadings.
@@ -43,7 +45,14 @@ To adapt is to fit something for a new purpose. It emphasizes that the archive i
 
 In the following section, we don't define these properties but rather discuss how we implement (or fail to implement) them in software, while highlighting some of the potential difficulties introduced.
 
-### Durability (being reliable, redundant, etc.)
+### Durability
+
+In 1964, in the midst of the "loss" of the twentieth-century, Paul Baran's RAND Corporation publication [On Distributed Communications](https://www.rand.org/content/dam/rand/pubs/research_memoranda/2006/RM3420.pdf) examined "redundancy as one means of building ... highly survivable and reliable communications systems," thus midwifing the military foundations of the digital networks that we operate within today. While the underlying framework of the internet generally follows distributed principles, the client-server/ request-response model of the HTTP protocol is highly centralized in practice and is only as durable as the server.
+
+Dat Library is built on the [Dat](https://github.com/datproject/docs/blob/master/papers/dat-paper.md), a peer-to-peer protocol for syncing folders of data. It is not the first distributed protocol (BitTorrent is the most well-known and is noted as an inspiration for Dat) nor is it the only new one being developed today (IPFS, or Inter-Planetary File System is often referenced in comparison) but it is unique in the foundational goals of preserving scientific knowledge as a public good. Dat's provocation is that by creating custom infrastructure it will be possible to overcome the accidents that restrict access to scientific knowledge. We would specifically acknowledge here the role that the Dat community - any community around a protocol - has in the formation of the world that is built on top of that protocol.
+
+When running Dat Library, a person will see their list of libraries. These can be thought of as similar to a torrent, with items are stored across many computers. This means that many people will share in the provision of disk space and bandwidth for a particular library, and that when one of them loses electricity or drops their computer, the library will not also break. Although this is a technical claim, one that's been made from Baran to BitTorrent, it is more importantly a social claim: the users and lovers of a library will share the library. More than that, they will share in the work of ensuring that it will continue to be shared.
+
 ### Accessibility (ability to access)
 ### Adoptability (ability to use/ modify as one’s own)
 
