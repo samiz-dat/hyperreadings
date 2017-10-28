@@ -1,5 +1,5 @@
 # README.md
-_Last edited: 27 October 2017_
+_Last edited: 28 October 2017_
 
 ## Introduction
 
@@ -27,23 +27,18 @@ Whatever its legal status, the abrupt absence of a collection 400,000 books emer
 
 The simple fact is that some of these libraries are among the largest in the world and also subject to sudden disappearance. We can only begin to grope at what the contours of "Lost Memory - Libraries and Archives Destroyed in the Twenty-First Century" will be when it is written 90 years from now.
 
-...
+## Non-profit, non-state archives
 
+Cultural and social movements have produced histories which are only partly represented in state libraries and archives. Often they are deemed too small or insignificant or, in some cases, dangerous. Most frequently, they are not deemed anything at all - they are simply neglected. While the market, eager for any new resources to exploit, might occasionally fill in the gaps, it is ultimately motivated by profit and not by responsibility to communities or archives.
 
-Traditionally, archives and libraries have been situated in a particular place. The collection of books that makes up a library, for example, is  housed in the building also called a library. This is advantageous for two reasons: through organization, individual items are reasonably easy to find; and the overall contents can be protected and preserved. 
+So what happens to these minor libraries? They are innumerable, but for the sake of argument let's say that each could be respresented by a single book. Gathered together, these books would form a great library (in both importance and scale). But to return this image to reality, these books fly off their shelves to the furthest reaches of the world, their covers fling open and the pages themselves scatter into bookshelves and basements, into the caring hands of relatives or small institutions devoted to passing these archives on to future generations.
 
-
-
-
-### Dat Library
-### HyperReadings
-
-## Why?
-### Role of institutions w.r.t archives
-### Community self-archiving
-### History of digital archives on the web
+While the massive digital archives listed above (library.nu, Library Genesis, Sci-Hub, etc.) could play the role of the library of libraries, they tend to be defined more as sites for [biblioleaks](https://www.jmir.org/2014/4/e112/). Furthermore, given the vulnerability of  these archives, we ought to look for alternative approaches that do not rule out using their resources, but also do not _depend_ on them.
 
 ## Archival properties
+
+So far, the emphasis of this README has been on _durability_; and the "accidents of the archive" have been instances of destruction and loss. The persistence of an archive is, however, no guarantee of its _accessibility_, a common reality in digital libraries where access management is ubiquitous. Official institutions police access to their archives vigilantly for the ostensible purpose of preservation, but ultimately creating a rarified relationship between the archives and their publics. Disregarding this precious tendency, we also introduce _adoptability_ as a fundamental consideration in the making of Dat Library and HyperReadings.
+
 ### Durability (being reliable, redundant, etc.)
 ### Accessibility (ability to access)
 ### Adoptability (ability to use/ modify as one’s own)
