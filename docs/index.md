@@ -53,7 +53,10 @@ Dat Library is built on the [Dat](https://github.com/datproject/docs/blob/master
 
 When running Dat Library, a person will see their list of libraries. These can be thought of as similar to a torrent, with items are stored across many computers. This means that many people will share in the provision of disk space and bandwidth for a particular library, and that when one of them loses electricity or drops their computer, the library will not also break. Although this is a technical claim, one that's been made from Baran to BitTorrent, it is more importantly a social claim: the users and lovers of a library will share the library. More than that, they will share in the work of ensuring that it will continue to be shared.
 
-### Accessibility (ability to access)
+### Accessibility
+
+In the world of the web, durability is synonymous with accessibility - if something can't be accessed, it doesn't exist. Here, we disentangle the two in order to consider access independent from questions of resilience. When you have created a new library in Dat, a unique 64-digit key will automatically be generated for it. In order for someone else to see that library you have created, you must provide them with that key (by email, chat, on paper, or you could publish it on your website). In short, _you_ manage access to the library by copying that key; and then every key holder also manages access _ad infinitum_.
+
 ### Adoptability (ability to use/ modify as one’s own)
 
 ## Use cases
