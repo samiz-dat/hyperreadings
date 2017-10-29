@@ -21,7 +21,7 @@ The 1996 UNESCO publication, [Lost Memory - Libraries and Archives Destroyed in 
 
 Published during the early days of the World Wide Web, the report acknowledges the emerging role of digitization ("online databases, CD-ROM etc."), but today we might reflect on the last 20 years, which has also introduced new forms of loss.
 
-Digital archives and libraries are subject to a number of potential hazards: technical accidents like disk failures, accidental deletions, misplaced data, imperfect migrations; and political-economic accidents like defunding of the hosting insitution, deaccessioning parts of the collection, and sudden restriction of access rights. Immediately after library.nu was shut down on the grounds of copyright infringement **(when was it shutdown?)**, [Lawrence Liang wrote](https://kafila.online/2012/02/19/library-nu-r-i-p/) of feeling "first and foremost as a visceral experience of loss." 
+Digital archives and libraries are subject to a number of potential hazards: technical accidents like disk failures, accidental deletions, misplaced data, imperfect migrations; and political-economic accidents like defunding of the hosting insitution, deaccessioning parts of the collection, and sudden restriction of access rights. Immediately after library.nu was shut down on the grounds of copyright infringement in 2012, [Lawrence Liang wrote](https://kafila.online/2012/02/19/library-nu-r-i-p/) of feeling "first and foremost as a visceral experience of loss." 
 
 Whatever its legal status, the abrupt absence of a collection 400,000 books emerged as a prototype for the 21st century. In 2008, Aaron Swartz moved millions of U.S. federal court documents out from behind a paywall resulting in a trial and FBI investigation. Three years later he was arrested and indicted for a similar gesture, systematically downloading academic journal articles from JSTOR. That year, Kazakhstani scientist Alexandra Elbakyan began Sci-Hub in response to scientific journal articles that were prohibitively expensive for scholars based outside of Western academic institutions. The repository, growing to more than 60 millions papers, was sued in 2015 by Elsevier for $15 million resulting and a permanent injunction. Library Genesis, another library of comparable scale, finds itself in a similar legal predicament.
 
@@ -74,12 +74,30 @@ For some communities, it is important to both be able to determine who has acces
 ### Adoptability (ability to use/ modify as one’s own)
 
 ## Use cases
+
+We began work on Dat Library and HyperReadings with a range of exemplary use cases, real-world circumstances in which these projects might intervene. Not only would the use cases make demands on the software we were and still are beginning to write, but it would also give us demands to make on the Dat protocol, which is still in its formative development. And crucially, in an interative feedback loop, this process of design produces transformative effects on those situations described in the use cases themselves, resulting in further new circumstances and new demands.
+
 ### Thorunka
+
 ### Academia.edu alternative
+
+Academia.edu, started in 2008, has raised tens of millions of dollars as a social networks for academics to share their publications. As a for-profit venture, it is rife with metrics and it attempts to capitalize on the innate competition and self-promotion of precarious knowledge workers in the academy. It is both popular and despised: popular because it fills an obvious desire to share the fruits of ones intellectual work, but despised for the neoliberal atmosphere that pervades every design decision and automated correspondence. It is, however, just trying to provide a return on investment.
+
+It is incredibly easy for any scholar running Dat Library to make a library of their own publications and post the key to their faculty web page, Facebook profile, or business card. The tricky - and interesting - thing would be to develop platforms that aggregate thousands of these libraries in direct competition with Academia.edu. This way, individuals would maintain control over their own work; their peer groups would assist in mirroring it; and no one would be capitalizing on the sale of data related to their performance and popularity.
+
 ### Syllabus
+
+The syllabus is the manifesto of the twenty-first century. From [Your Baltimore Syllabus](https://apis4blacklives.wordpress.com/2015/05/01/your-baltimore-syllabus/) to [#StandingRockSyllabus](https://nycstandswithstandingrock.wordpress.com/standingrocksyllabus/) to [Women and gender non-conforming people writing about tech](https://docs.google.com/document/d/1Qx8JDqfuXoHwk4_1PZYWrZu3mmCsV_05Fe09AtJ9ozw/edit), syllabi are being produced as provocations [tbc...]
+
 ### Publication format
+
+In writing this README, we have string together several references through the text that we are writing. The writing might be published in a book and the references will be listed as words at the bottom of the page or at the end of the text. But the writing might just as well be published as a HyperReadings object, providing the reader with an archive of all the things we referred to and an editable version of this text.
+
+A new text-editor could be created for this new publication format, not to mention a new form of publication, which bundles together a set of HyperReadings texts, producing a universe of texts and references. Each HyperReadings text might reference others, of course, generating something that begins to feel like a serverless World Wide Web.
+
 ### Self-education
 
 ## Proposition
+
 ### Role of individuals
 ### Role of institutions
