@@ -21,13 +21,13 @@ The 1996 UNESCO publication, [Lost Memory - Libraries and Archives Destroyed in 
 
 Published during the early days of the World Wide Web, the report acknowledges the emerging role of digitization ("online databases, CD-ROM etc."), but today we might reflect on the last 20 years, which has also introduced new forms of loss.
 
-Digital archives and libraries are subject to a number of potential hazards: technical accidents like disk failures, accidental deletions, misplaced data, imperfect migrations; and political-economic accidents like defunding of the hosting insitution, deaccessioning parts of the collection, and sudden restriction of access rights. Immediately after library.nu was shut down on the grounds of copyright infringement in 2012, [Lawrence Liang wrote](https://kafila.online/2012/02/19/library-nu-r-i-p/) of feeling "first and foremost as a visceral experience of loss." 
+Digital archives and libraries are subject to a number of potential hazards: technical accidents like disk failures, accidental deletions, misplaced data, imperfect migrations; and political-economic accidents like defunding of the hosting insitution, deaccessioning parts of the collection, and sudden restriction of access rights. Immediately after library.nu was shut down on the grounds of copyright infringement in 2012, [Lawrence Liang wrote](https://kafila.online/2012/02/19/library-nu-r-i-p/) of feeling "first and foremost as a visceral experience of loss."
 
 Whatever its legal status, the abrupt absence of a collection 400,000 books emerged as a prototype for the 21st century. In 2008, Aaron Swartz moved millions of U.S. federal court documents out from behind a paywall resulting in a trial and FBI investigation. Three years later he was arrested and indicted for a similar gesture, systematically downloading academic journal articles from JSTOR. That year, Kazakhstani scientist Alexandra Elbakyan began Sci-Hub in response to scientific journal articles that were prohibitively expensive for scholars based outside of Western academic institutions. The repository, growing to more than 60 millions papers, was sued in 2015 by Elsevier for $15 million resulting and a permanent injunction. Library Genesis, another library of comparable scale, finds itself in a similar legal predicament.
 
 The simple fact is that some of these libraries are among the largest in the world and also subject to sudden disappearance. We can only begin to grope at what the contours of "Lost Memory - Libraries and Archives Destroyed in the Twenty-First Century" will be when it is written 90 years from now.
 
-**What about commercial examples, the ironic example of Orwell's 1984 (and animal farm) being quitely removed from peoples Kindles over night because of commercial agreement with the publisher. http://www.nytimes.com/2009/07/18/technology/companies/18amazon.html** 
+**What about commercial examples, the ironic example of Orwell's 1984 (and animal farm) being quitely removed from peoples Kindles over night because of commercial agreement with the publisher. http://www.nytimes.com/2009/07/18/technology/companies/18amazon.html**
 
 ## Non-profit, non-state archives
 
@@ -57,17 +57,26 @@ Dat Library is built on the [Dat Protocol](https://github.com/datproject/docs/bl
 
 When running Dat Library, a person sees their list of libraries. These can be thought of as similar to a torrent, where items are stored across many computers. This means that many people will share in the provision of disk space and bandwidth for a particular library, and that when one of them loses electricity or drops their computer, the library will not also break. Although this is a technical claim, one that's been made from Baran to BitTorrent, it is more importantly a social claim: the users and lovers of a library will share the library. More than that, they will share in the work of ensuring that it will continue to be shared.
 
-**(This is not dissimilar to the process of reading generally, where knowledge is distributed and maintained through readers sharing and referencing the books important to them.) 
+**(This is not dissimilar to the process of reading generally, where knowledge is distributed and maintained through readers sharing and referencing the books important to them.)
 
 ### Accessibility
 
-In the world of the web, durability is synonymous with accessibility - if something can't be accessed, it doesn't exist. Here, we disentangle the two in order to consider access independent from questions of resilience. When you have created a new library in Dat, a unique 64-digit "key" will automatically be generated for it. In order for someone else to see that library you have created, you must provide them with that key (by email, chat, on paper, or you could publish it on your website). In short, _you_ manage access to the library by copying that key; and then every key holder also manages access _ad infinitum_.
+In the world of the web, durability is synonymous with accessibility - if something can't be accessed, it doesn't exist. Here, we disentangle the two in order to consider access independent from questions of resilience.
 
-How is this any different from knowing the domain name of a website? If a site isn't indexed by Google and has a suitably un-guessable domain name, then isn't that effectively the same degree of privacy? Yes, and this is precisely why the metaphor of the key is so apt (with whom do you share the key to your apartment?) but also why it is limited. With the key, one not only has access to enter the library, but access to completely reproduce the library.
+When you have created a new library in Dat, a unique 64-digit "key" will automatically be generated for it. An example key is 6f963e59e9948d14f5d2eccd5b5ac8e157ca34d70d724b41cb0f565bc01162bf, which points to a library of texts. In order for someone else to see the library you have created, you must provide them your library’s unique key (by email, chat, on paper, or you could publish it on your website). In short, _you_ manage access to the library by copying that key; and then every key holder also manages access _ad infinitum_.
 
-This complete reproduction also has its limits. [multiwriter...]
+How is this any different from knowing the domain name of a website? If a site isn't indexed by Google and has a suitably unguessable domain name, then isn't that effectively the same degree of privacy? Yes, and this is precisely why the metaphor of the key is so apt (with whom do you share the key to your apartment?) but also why it is limited. With the key, one not only has access to enter the library, but access to completely reproduce the library.
 
-For some communities, it is important to both be able to determine who has access to their archives and to continue to have access themselves. [BF: could you elaborate here?]
+At the moment this has its limitations. A Dat is only writable by a single creator. If you want to collaboratively develop a library or reading list, you need to have a single administrator managing its contents. This will change in the near future with the integration of [hyperdb](https://github.com/mafintosh/hyperdb) into Dat’s core. It’s our understanding that this will enable multiple contributors and management of permissions.
+
+Its important to note that accessibility is not always about indiscriminate and open access.
+
+- Write something about interaction between indigenous knowledge traditions and western knowledge traditions. The uncomfortable tension that is pragmatically necessary to address is it is an ongoing and real co-existence. [Australian Indigenous Knowledge and Libraries](https://epress.lib.uts.edu.au/system/files_force/Aus%20Indigenous%20Knowledge%20and%20Libraries.pdf?download=1)
+
+- Write about infinite hospitality. Ranganathan's idea - originally in relation to cataloging - extending to software / systems generally. Developing an architecture which accommodates uses outside of the intention for which it was initially developed. How can many knowledge traditions co-exist e.g. [Mapping of the Universe of Knowledge in Different Classification Schemes](http://ijkcdt.net/xml/10973/10973.pdf) and [Infinite Hospitality](http://www.dextersinister.org/MEDIA/PDF/InfiniteHospitality.pdf)
+
+
+For some communities, it is important to both be able to determine who has access to their archives and to continue to have access themselves.
 
 
 
