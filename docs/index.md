@@ -71,10 +71,14 @@ At the moment this has its limitations. A Dat is only writable by a single creat
 
 Its important to note that accessibility is not always about indiscriminate and open access.
 
-- Write something about interaction between indigenous knowledge traditions and western knowledge traditions. The uncomfortable tension that is pragmatically necessary to address is it is an ongoing and real co-existence. [Australian Indigenous Knowledge and Libraries](https://epress.lib.uts.edu.au/system/files_force/Aus%20Indigenous%20Knowledge%20and%20Libraries.pdf?download=1)
+- Write something about interaction between indigenous knowledge traditions and western knowledge traditions. The uncomfortable tension that is pragmatically necessary to address is it is an ongoing and real co-existence. [Australian Indigenous Knowledge and Libraries](https://epress.lib.uts.edu.au/system/files_force/Aus%20Indigenous%20Knowledge%20and%20Libraries.pdf?download=1) Power of access and management in the hands of the community itself. (perhaps reference the importance of open source nature)
 
-- Write about infinite hospitality. Ranganathan's idea - originally in relation to cataloging - extending to software / systems generally. Developing an architecture which accommodates uses outside of the intention for which it was initially developed. How can many knowledge traditions co-exist e.g. [Mapping of the Universe of Knowledge in Different Classification Schemes](http://ijkcdt.net/xml/10973/10973.pdf) and [Infinite Hospitality](http://www.dextersinister.org/MEDIA/PDF/InfiniteHospitality.pdf)
+- Write about infinite hospitality. Ranganathan's idea - originally in relation to cataloging - extending to software / systems generally. Developing an architecture which accommodates uses outside of the intention for which it was initially developed. How can many knowledge traditions co-exist e.g. [Mapping of the Universe of Knowledge in Different Classification Schemes](http://ijkcdt.net/xml/10973/10973.pdf) and [Infinite Hospitality](http://www.dextersinister.org/MEDIA/PDF/InfiniteHospitality.pdf) – what does our schema ? classification look like?
+  hyper readings as a simple agnostic layer on which communities can build there own application layers.
 
+- this is not just about tech. Its about developing situations and contexts, the technology is always secondary. A support to real need.
+
+- write about accessibility in regards to tools for discovery - how do we navigate the mass of information? Manage the accumulation. Etc...
 
 For some communities, it is important to both be able to determine who has access to their archives and to continue to have access themselves.
 
