@@ -1,5 +1,5 @@
 # README.md
-_Last edited: 28 October 2017_
+_Last edited: 9 November 2017_
 
 ## Introduction
 
@@ -9,7 +9,7 @@ While trying to both formulate and respond to these questions, we began making D
 
 **Dat Library** distributes libraries across many computers so that many people can provide disk space and bandwidth, sharing in the labour and responsibility of the archival infrastructure.
 
-**HyperReadings** implements "reading lists," or a structured set of pointers (a list, a syllabus, a bibliography, etc.) into one or more libraries, _activating_ the archives.
+**HyperReadings** implements "reading lists", or a structured set of pointers (a list, a syllabus, a bibliography, etc.) into one or more libraries, _activating_ the archives.
 
 ## Installation
 
