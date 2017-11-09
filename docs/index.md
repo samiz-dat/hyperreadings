@@ -73,9 +73,9 @@ Technically Accessible (
 
 )
 
+Its important to note that accessibility is not always about indiscriminate open access.
 
-
-Its important to note that accessibility is not always about indiscriminate and open access.
+// how do I frame knowledge traditions.
 
 - Write something about interaction between indigenous knowledge traditions and western knowledge traditions. The uncomfortable tension that is pragmatically necessary to address is it is an ongoing and real co-existence. [Australian Indigenous Knowledge and Libraries](https://epress.lib.uts.edu.au/system/files_force/Aus%20Indigenous%20Knowledge%20and%20Libraries.pdf?download=1) Power of access and management in the hands of the community itself. (perhaps reference the importance of open source nature)
 
