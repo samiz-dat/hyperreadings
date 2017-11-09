@@ -63,11 +63,17 @@ When running Dat Library, a person sees their list of libraries. These can be th
 
 In the world of the web, durability is synonymous with accessibility - if something can't be accessed, it doesn't exist. Here, we disentangle the two in order to consider _access_ independent from questions of resilience.
 
-When you have created a new library in Dat, a unique 64-digit "key" will automatically be generated for it. An example key is 6f963e59e9948d14f5d2eccd5b5ac8e157ca34d70d724b41cb0f565bc01162bf, which points to a library of texts. In order for someone else to see the library you have created, you must provide them your library’s unique key (by email, chat, on paper, or you could publish it on your website). In short, _you_ manage access to the library by copying that key; and then every key holder also manages access _ad infinitum_.
+Technically Accessible (
 
-How is this any different from knowing the domain name of a website? If a site isn't indexed by Google and has a suitably unguessable domain name, then isn't that effectively the same degree of privacy? Yes, and this is precisely why the metaphor of the key is so apt (with whom do you share the key to your apartment?) but also why it is limited. With the key, one not only has access to enter the library, but access to completely reproduce the library.
+> When you have created a new library in Dat, a unique 64-digit "key" will automatically be generated for it. An example key is 6f963e59e9948d14f5d2eccd5b5ac8e157ca34d70d724b41cb0f565bc01162bf, which points to a library of texts. In order for someone else to see the library you have created, you must provide them your library’s unique key (by email, chat, on paper, or you could publish it on your website). In short, _you_ manage access to the library by copying that key; and then every key holder also manages access _ad infinitum_.
 
-At the moment this has its limitations. A Dat is only writable by a single creator. If you want to collaboratively develop a library or reading list, you need to have a single administrator managing its contents. This will change in the near future with the integration of [hyperdb](https://github.com/mafintosh/hyperdb) into Dat’s core. It’s our understanding that this will enable multiple contributors and management of permissions.
+> At the moment this has its limitations. A Dat is only writable by a single creator. If you want to collaboratively develop a library or reading list, you need to have a single administrator managing its contents. This will change in the near future with the integration of [hyperdb](https://github.com/mafintosh/hyperdb) into Dat’s core. This will enable multiple contributors and management of permissions. Our single key will become a key chain.
+
+> How is this any different from knowing the domain name of a website? If a site isn't indexed by Google and has a suitably unguessable domain name, then isn't that effectively the same degree of privacy? Yes, and this is precisely why the metaphor of the key is so apt (with whom do you share the key to your apartment?) but also why it is limited. With the key, one not only has access to enter the library, but access to completely reproduce the library.
+
+)
+
+
 
 Its important to note that accessibility is not always about indiscriminate and open access.
 
