@@ -79,7 +79,7 @@ Its important to note that accessibility is not always about indiscriminate and 
 
 - Write something about interaction between indigenous knowledge traditions and western knowledge traditions. The uncomfortable tension that is pragmatically necessary to address is it is an ongoing and real co-existence. [Australian Indigenous Knowledge and Libraries](https://epress.lib.uts.edu.au/system/files_force/Aus%20Indigenous%20Knowledge%20and%20Libraries.pdf?download=1) Power of access and management in the hands of the community itself. (perhaps reference the importance of open source nature)
 
-- Write about infinite hospitality. Ranganathan's idea - originally in relation to cataloging - extending to software / systems generally. Developing an architecture which accommodates uses outside of the intention for which it was initially developed. How can many knowledge traditions co-exist e.g. [Mapping of the Universe of Knowledge in Different Classification Schemes](http://ijkcdt.net/xml/10973/10973.pdf) and [Infinite Hospitality](http://www.dextersinister.org/MEDIA/PDF/InfiniteHospitality.pdf) – what does our schema ? classification look like?
+- Write about infinite hospitality. In thinking about accessibility Ranganathan's idea - originally in relation to cataloging - extending to software / systems generally. Developing an architecture which accommodates uses outside of the intention for which it was initially developed. How can many knowledge traditions co-exist e.g. [Mapping of the Universe of Knowledge in Different Classification Schemes](http://ijkcdt.net/xml/10973/10973.pdf) and [Infinite Hospitality](http://www.dextersinister.org/MEDIA/PDF/InfiniteHospitality.pdf) – what does our schema ? classification look like?
   hyper readings as a simple agnostic layer on which communities can build there own application layers.
 
 - this is not just about tech. Its about developing situations and contexts, the technology is always secondary. A support to real need.
@@ -97,6 +97,14 @@ For some communities, it is important to both be able to determine who has acces
 We began work on Dat Library and HyperReadings with a range of exemplary use cases, real-world circumstances in which these projects might intervene. Not only would the use cases make demands on the software we were and still are beginning to write, but it would also give us demands to make on the Dat protocol, which is still in its formative development. And crucially, in an interative feedback loop, this process of design produces transformative effects on those situations described in the use cases themselves, resulting in further new circumstances and new demands.
 
 ### Thorunka
+
+Wendy Bacon and Chris Nash made us aware of Thorunka and Thor.
+
+Thorunka and Thor were two underground papers in the early 70’s which spewed out from a censorship controversy surrounding the University of NSW student newspaper Tharunka. Between 1971 to 1973 the student magazine was under focused attack from the NSW state police with several arrests were made on charges of obscenity and indecency. Rather than ceding to the charges, this prompted a large and sustained political protest from Sydney activists, writers, lawyers, students and others, of which Thorunka and Thor were central.
+
+> "The campaign contested the idea of obscenity and the legitimacy of the legal system itself. The newspapers campaigned on the war in Vietnam, Aboriginal land rights, women’s and gay liberation, and the violence of the criminal justice system. By 1973 the censorship regime in Australia was broken. Nearly all the charges were dropped." – [Words from here](http://107.org.au/event/tharunka-thor-journalism-politics-art-1970-1973/)
+
+Although the collection of Tharunkas are largely accessible via Trove(insert link), the subsequent issues of Thorunka, and later Thor, are not. For us this demonstrates clearly how collection themselves can encourage modes of reading. If you focus on Tharunka as a singular and long standing periodical, this significant political moment is rendered almost invisible. ...... Wendy and Chris have kindly allowed us to make their personal collection available via Dat Library (insert key).
 
 ### Academia.edu alternative
 
