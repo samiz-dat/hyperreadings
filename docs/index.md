@@ -61,7 +61,7 @@ When running Dat Library, a person sees their list of libraries. These can be th
 
 ### Accessibility
 
-In the world of the web, durability is synonymous with accessibility - if something can't be accessed, it doesn't exist. Here, we disentangle the two in order to consider access independent from questions of resilience.
+In the world of the web, durability is synonymous with accessibility - if something can't be accessed, it doesn't exist. Here, we disentangle the two in order to consider _access_ independent from questions of resilience.
 
 When you have created a new library in Dat, a unique 64-digit "key" will automatically be generated for it. An example key is 6f963e59e9948d14f5d2eccd5b5ac8e157ca34d70d724b41cb0f565bc01162bf, which points to a library of texts. In order for someone else to see the library you have created, you must provide them your library’s unique key (by email, chat, on paper, or you could publish it on your website). In short, _you_ manage access to the library by copying that key; and then every key holder also manages access _ad infinitum_.
 
