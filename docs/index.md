@@ -94,7 +94,7 @@ For some communities, it is important to both be able to determine who has acces
 
 ## Use cases
 
-We began work on Dat Library and HyperReadings with a range of exemplary use cases, real-world circumstances in which these projects might intervene. Not only would the use cases make demands on the software we were and still are beginning to write, but it would also give us demands to make on the Dat protocol, which is still in its formative development. And crucially, in an interative feedback loop, this process of design produces transformative effects on those situations described in the use cases themselves, resulting in further new circumstances and new demands.
+We began work on Dat Library and HyperReadings with a range of exemplary use cases, real-world circumstances in which these projects might intervene. Not only would the use cases make demands on the software we were and still are beginning to write, but it would also give us demands to make on the Dat protocol, which is still in its formative development. And crucially, in an iterative feedback loop, this process of design produces transformative effects on those situations described in the use cases themselves, resulting in further new circumstances and new demands.
 
 ### Thorunka
 
