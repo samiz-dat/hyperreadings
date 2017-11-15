@@ -88,8 +88,6 @@ Its important to note that accessibility is not always about indiscriminate open
 
 For some communities, it is important to both be able to determine who has access to their archives and to continue to have access themselves.
 
-
-
 ### Adoptability (ability to use/ modify as one’s own)
 
 ## Use cases
@@ -124,7 +122,26 @@ A new text-editor could be created for this new publication format, not to menti
 
 ### Self-education
 
-## Proposition
+## Proposition (or Presuppositions)
+
+While the software that we have begun writing is a proposition in and of itself, there is no guarantee _how_ it will be used. But when writing, we _are_ imagining exactly that, we are making intuitive and hopeful presuppositions about how it will be used, presuppositions that amount to a set of social propositions.
 
 ### Role of individuals
+
+Different people have different technical resources and capabilities, but everyone can contribute to an archive. By simple running the Dat Library software and adding an archive to it, a person is sharing their disk space and internet bandwidth in the service of that archive. At first, it is only the archive's index (a list of the contents) that is hosted, but if the person downloads the contents (or even just a small portion of the contents) then they are sharing in the hosting of the contents as well. Individuals, as supporters of an archive or members of a community, can organize together to guarantee the durability and accessibility of the archive. As supporters of many archives, members of many communities, they can use Dat Library to perform this function many times over.
+
+On the Web, individuals are usually users or browsers - they use browsers. In spite of the ostensible interactivity of the medium, users are kept at a distance from the actual code, the infrastructure of a website, which is run on a server. With a distributed protocol, like Dat, applications such as Beaker Browser or Dat Library eliminate the central server, not by destroying it, but by distributing it across all of the users. Individuals are then not _just_ users, but also hosts. What kind of subject is this user-host, especially compared to the user of the server? Michel Serres writes in _The Parasite_:
+
+> It is raining; a passer-by comes in. Here is the interrupted meal once more. Stopped for only a moment, since the traveller is asked to join the diners. His host does not have to ask him twice. He accepts the invitation and sits down in front of his bowl. The host is the satyr, dining at home; he is the donor. He calls to the passer-by, saying to him, be our guest. The guest is the stranger, the interrupter, the one who receives the soup, agrees to the meal. The host, the guest: the same word; he gives and receives, offers and accepts, invites and is invited, master and passer-by…
+
+> An invariable term through the transfer of the gift. It might be dangerous not to decide who is the host and who is the guest, who gives and who receives, who is the parasite and who is the table d’hote, who has the gift and who has the loss, and where hospitality begins with hospitality…
+
+Serres notes that *guest* and *host* are "the same word" in French; we might say the same for *client* and *server* in a distributed protocol. And we will embrace this multiplying hospitality, giving and taking without measure.
+
+---
+
 ### Role of institutions
+
+David Cameron launched a doomed initiative in 2010 called the Big Society, which paired large-scale cuts in public programs with a call for local communities to voluntarily self-organize to provide these fundamental services for themselves. This is not what we want. We are not making a plan for dismantling institutions into a blockchain or distributing institutions, like servers, into individuals.
+
+**I'm not sure this section is going to go anywhere interesting, and certainly not anywhere to conclude**
