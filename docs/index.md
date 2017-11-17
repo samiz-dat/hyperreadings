@@ -142,6 +142,14 @@ Serres notes that *guest* and *host* are "the same word" in French; we might say
 
 ### Role of institutions
 
-David Cameron launched a doomed initiative in 2010 called the Big Society, which paired large-scale cuts in public programs with a call for local communities to voluntarily self-organize to provide these fundamental services for themselves. This is not what we want. We are not making a plan for dismantling institutions into a blockchain or distributing institutions, like servers, into individuals.
+David Cameron launched a doomed initiative in 2010 called the Big Society, which paired large-scale cuts in public programs with a call for local communities to voluntarily self-organize to provide these fundamental services for themselves. This is not the political future that we should be working toward: since 2010, austerity policies have resulted in [120,000 excess deaths in England](http://bmjopen.bmj.com/content/7/11/e017722). In other words, while it might seem as though _institutions_ might be comparable to _servers_, inasmuch as both are centralized infrastructures, we should not give them up or allow them to be dismantled under the assumption that those infrastructures can simply be distributed and self-organized. On the contrary, institutions should be defended and organized in order to support the distributed protocols we are discussing.
 
-**I'm not sure this section is going to go anywhere interesting, and certainly not anywhere to conclude**
+One simple way for larger, more established institutions is through the provision of hardware, network capability, and some basic technical support to ensure the durability and accessibility of the archives. It can back up the archives of smaller institutions and groups within its own community while also giving access to its own archives so that those collections might be put to use. A network of smaller institutions, separated by great distances, might mirror eachothers' archives both as an expression of solidarity and positive redundancy as well as a means for circulating their archives, histories, and struggles amongst each of the others.
+
+Through the provision of disk space, office space, grants, technical support, and employment, larger institutions can materially support smaller organizations, individuals and their archival afterlives. They can provide physical space and outreach for dispersed collectors gather and piece together a fragmented archive. 
+
+And what happens as more people and collections are brought in? As more of the institutional archives are allowed to circulate outside of its walls? As storage is cut loose from its dependency on the corporate cloud and into forms interdependency such as mutual support networks?
+
+
+
+
