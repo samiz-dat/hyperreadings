@@ -63,30 +63,29 @@ When running Dat Library, a person sees their list of libraries. These can be th
 
 In the world of the web, durability is synonymous with accessibility - if something can't be accessed, it doesn't exist. Here, we disentangle the two in order to consider _access_ independent from questions of resilience.
 
-Technically Accessible (
+##### Technically Accessible
 
-> When you have created a new library in Dat, a unique 64-digit "key" will automatically be generated for it. An example key is 6f963e59e9948d14f5d2eccd5b5ac8e157ca34d70d724b41cb0f565bc01162bf, which points to a library of texts. In order for someone else to see the library you have created, you must provide them your library’s unique key (by email, chat, on paper, or you could publish it on your website). In short, _you_ manage access to the library by copying that key; and then every key holder also manages access _ad infinitum_.
+When you have created a new library in Dat, a unique 64-digit "key" will automatically be generated for it. An example key is `6f963e59e9948d14f5d2eccd5b5ac8e157ca34d70d724b41cb0f565bc01162bf`, which points to a library of texts. In order for someone else to see the library you have created, you must provide them your library’s unique key (by email, chat, on paper, or you could publish it on your website). In short, _you_ manage access to the library by copying that key; and then every key holder also manages access _ad infinitum_.
 
-> At the moment this has its limitations. A Dat is only writable by a single creator. If you want to collaboratively develop a library or reading list, you need to have a single administrator managing its contents. This will change in the near future with the integration of [hyperdb](https://github.com/mafintosh/hyperdb) into Dat’s core. This will enable multiple contributors and management of permissions. Our single key will become a key chain.
+At the moment this has its limitations. A Dat is only writable by a single creator. If you want to collaboratively develop a library or reading list, you need to have a single administrator managing its contents. This will change in the near future with the integration of [hyperdb](https://github.com/mafintosh/hyperdb) into Dat’s core. This will enable multiple contributors and management of permissions. Our single key will become a key chain.
 
-> How is this any different from knowing the domain name of a website? If a site isn't indexed by Google and has a suitably unguessable domain name, then isn't that effectively the same degree of privacy? Yes, and this is precisely why the metaphor of the key is so apt (with whom do you share the key to your apartment?) but also why it is limited. With the key, one not only has access to enter the library, but access to completely reproduce the library.
+How is this key any different from knowing the domain name of a website? If a site isn't indexed by Google and has a suitably unguessable domain name, then isn't that effectively the same degree of privacy? Yes, and this is precisely why the metaphor of the key is so apt (with whom do you share the key to your apartment?) but also why it is limited. With the key, one not only has the ability to _enter_ the library, but also to completely _reproduce_ the library.
 
-)
+##### Consenting Accessibility
 
-Its important to note that accessibility is not always about indiscriminate open access.
+When we say "accessibility", some hear, "information wants to be free"; but our idea of accessibility is not about indiscriminate open access to everything. While we do support, in many instances, the desire to increase access to knowledge where it has been restricted by monopoly property ownership, or the urge to increase transparency in delegated decision-making and representative government, we also recognize that Indigenous knowledge traditions often depend on ownership, control, consent, and secrecy in the hands of the traditions' people. [see ["Managing Indigenous Knowledge and
+Indigenous Cultural and Intellectual Property"](https://epress.lib.uts.edu.au/system/files_force/Aus%20Indigenous%20Knowledge%20and%20Libraries.pdf?download=1), pg 83] Accessibility understood in merely quantative terms isn't able to reconcile these positions, which this is why we refuse to limit "access" to a question of technology.
 
-// how do I frame knowledge traditions.
+While "digital rights management" technologies have been developed almost exclusively for protecting the commercial interests of capitalist property owners within Western Intellectual Property regimes, many of the assumptions and technological implementations are inadequate for the protection of Indigenous knowledge. Rather than describing access in terms of commodities and ownership of copyright, it might be defined by membership, status, or role within a tribe, and the rules of access would not be managed by an generalized legal system but by the rules and traditions of the people and their knowledge. [["The Role of Information Technologies in Indigenous Knowledge Management"](https://epress.lib.uts.edu.au/system/files_force/Aus%20Indigenous%20Knowledge%20and%20Libraries.pdf?download=1), 101-102] These rights would not expire, nor would they be bought and sold, because they are shared, held in common.
 
-- Write something about interaction between indigenous knowledge traditions and western knowledge traditions. The uncomfortable tension that is pragmatically necessary to address is it is an ongoing and real co-existence. [Australian Indigenous Knowledge and Libraries](https://epress.lib.uts.edu.au/system/files_force/Aus%20Indigenous%20Knowledge%20and%20Libraries.pdf?download=1) Power of access and management in the hands of the community itself. (perhaps reference the importance of open source nature)
+It is important, while imagining the possibilities of a technological protocol, to consider how different _cultural protocols_ might be implemented and protected through the life of a project like Dat Library. Certain aspects of this might be accomplished through library metadata, but ultimately it is through people hosting their own archives and libraries (rather than, for example, having them hosted by a state institution) that cultural protocols can be translated and reproduced. Perhaps we should flip the typical question of how might a culture exist within digital networks to ask how should digital networks operate within cultural protocols?
+
 
 - Write about infinite hospitality. In thinking about accessibility Ranganathan's idea - originally in relation to cataloging - extending to software / systems generally. Developing an architecture which accommodates uses outside of the intention for which it was initially developed. How can many knowledge traditions co-exist e.g. [Mapping of the Universe of Knowledge in Different Classification Schemes](http://ijkcdt.net/xml/10973/10973.pdf) and [Infinite Hospitality](http://www.dextersinister.org/MEDIA/PDF/InfiniteHospitality.pdf) – what does our schema ? classification look like?
   hyper readings as a simple agnostic layer on which communities can build there own application layers.
 
-- this is not just about tech. Its about developing situations and contexts, the technology is always secondary. A support to real need.
-
 - write about accessibility in regards to tools for discovery - how do we navigate the mass of information? Manage the accumulation. Etc...
 
-For some communities, it is important to both be able to determine who has access to their archives and to continue to have access themselves.
 
 ### Adoptability (ability to use/ modify as one’s own)
 
