@@ -137,7 +137,7 @@ While the software that we have begun writing is a proposition in and of itself,
 
 ### Role of individuals
 
-Different people have different technical resources and capabilities, but everyone can contribute to an archive. By simple running the Dat Library software and adding an archive to it, a person is sharing their disk space and internet bandwidth in the service of that archive. At first, it is only the archive's index (a list of the contents) that is hosted, but if the person downloads the contents (or even just a small portion of the contents) then they are sharing in the hosting of the contents as well. Individuals, as supporters of an archive or members of a community, can organize together to guarantee the durability and accessibility of the archive. As supporters of many archives, members of many communities, they can use Dat Library to perform this function many times over.
+Different people have different technical resources and capabilities, but everyone can contribute to an archive. By simply running the Dat Library software and adding an archive to it, a person is sharing their disk space and internet bandwidth in the service of that archive At first, it is only the archive's index (a list of the contents) that is hosted, but if the person downloads the contents (or even just a small portion of the contents) then they are sharing in the hosting of the contents as well. Individuals, as supporters of an archive or members of a community, can organize together to guarantee the durability and accessibility of the archive. Saving a future UbuWeb from ever having to worry about if their 'ISP pulls the plug'. As supporters of many archives, members of many communities, they can use Dat Library to perform this function many times over.
 
 On the Web, individuals are usually users or browsers - they use browsers. In spite of the ostensible interactivity of the medium, users are kept at a distance from the actual code, the infrastructure of a website, which is run on a server. With a distributed protocol, like Dat, applications such as Beaker Browser or Dat Library eliminate the central server, not by destroying it, but by distributing it across all of the users. Individuals are then not _just_ users, but also hosts. What kind of subject is this user-host, especially compared to the user of the server? Michel Serres writes in _The Parasite_:
 
@@ -158,7 +158,3 @@ One simple way for larger, more established institutions is through the provisio
 Through the provision of disk space, office space, grants, technical support, and employment, larger institutions can materially support smaller organizations, individuals and their archival afterlives. They can provide physical space and outreach for dispersed collectors gather and piece together a fragmented archive.
 
 And what happens as more people and collections are brought in? As more of the institutional archives are allowed to circulate outside of its walls? As storage is cut loose from its dependency on the corporate cloud and into forms interdependency such as mutual support networks?
-
-
-
-
