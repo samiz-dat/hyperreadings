@@ -30,11 +30,9 @@ Whatever its legal status, the abrupt absence of a collection 400,000 books emer
 
 The simple fact is that some of these libraries are among the largest in the world and also subject to sudden disappearance. We can only begin to grope at what the contours of "Lost Memory - Libraries and Archives Destroyed in the Twenty-First Century" will be when it is written 90 years from now.
 
-**What about commercial examples, the ironic example of Orwell's 1984 (and animal farm) being quitely removed from peoples Kindles over night because of commercial agreement with the publisher. http://www.nytimes.com/2009/07/18/technology/companies/18amazon.html**
-
 ## Non-profit, non-state archives
 
-Cultural and social movements have produced histories which are only partly represented in state libraries and archives. Often they are deemed too small or insignificant or, in some cases, dangerous. Most frequently, they are not deemed anything at all - they are simply neglected. While the market, eager for any new resources to exploit, might occasionally fill in the gaps, it is ultimately motivated by profit and not by responsibility to communities or archives.
+Cultural and social movements have produced histories which are only partly represented in state libraries and archives. Often they are deemed too small or insignificant or, in some cases, dangerous. Most frequently, they are not deemed anything at all - they are simply neglected. While the market, eager for any new resources to exploit, might occasionally fill in the gaps, it is ultimately motivated by profit and not by responsibility to communities or archives. (We should not forget the moment [Amazon silently erased legally purchased copies George Orwell’s 1984](http://www.nytimes.com/2009/07/18/technology/companies/18amazon.html) from readers Kindle's because of a commercial agreement with the publisher.)
 
 So what happens to these minor libraries? They are innumerable, but for the sake of argument let's say that each could be respresented by a single book. Gathered together, these books would form a great library (in both importance and scale). But to return this image to reality, these books fly off their shelves to the furthest reaches of the world, their covers fling open and the pages themselves scatter into bookshelves and basements, into the caring hands of relatives or small institutions devoted to passing these archives on to future generations.
 
