@@ -1,5 +1,5 @@
 # README.md
-_Last edited: 9 November 2017_
+_Last edited: 20 November 2017_
 
 ## Introduction
 
@@ -34,7 +34,7 @@ The simple fact is that some of these libraries are among the largest in the wor
 
 Cultural and social movements have produced histories which are only partly represented in state libraries and archives. Often they are deemed too small or insignificant or, in some cases, dangerous. Most frequently, they are not deemed anything at all - they are simply neglected. While the market, eager for any new resources to exploit, might occasionally fill in the gaps, it is ultimately motivated by profit and not by responsibility to communities or archives. (We should not forget the moment [Amazon silently erased legally purchased copies of George Orwell’s 1984](http://www.nytimes.com/2009/07/18/technology/companies/18amazon.html) from readers Kindle's because of a commercial agreement with the publisher.)
 
-So what happens to these minor libraries? They are innumerable, but for the sake of argument let's say that each could be represented by a single book. Gathered together, these books would form a great library (in both importance and scale). But to return this image to reality, these books fly off their shelves to the furthest reaches of the world, their covers fling open and the pages themselves scatter into bookshelves and basements, into the caring hands of relatives or small institutions devoted to passing these words on to future generations.
+So what happens to these minor libraries? They are innumerable, but for the sake of illustration let's say that each could be represented by a single book. Gathered together, these books would form a great library (in both importance and scale). But to return this illustration to current reality, these books fly off their shelves to the furthest reaches of the world, their covers fling open and the pages themselves scatter into bookshelves and basements, into the caring hands of relatives or small institutions devoted to passing these words on to future generations.
 
 While the massive digital archives listed above (library.nu, Library Genesis, Sci-Hub, etc.) could play the role of the library of libraries, they tend to be defined more as sites for [biblioleaks](https://www.jmir.org/2014/4/e112/). Furthermore, given the vulnerability of these archives, we ought to look for alternative approaches that do not rule out using their resources, but also do not _depend_ on them.
 
@@ -87,7 +87,7 @@ It is important, while imagining the possibilities of a technological protocol, 
 - write about accessibility in regards to tools for discovery - how do we navigate the mass of information? Manage the accumulation. Etc...
 
 
-### Adoptability (ability to use/ modify as one’s own)
+### Adaptability (ability to use/ modify as one’s own)
 
 Durability and accessibility are the foundation for adoptability. Many would say that this is a contradiction, that adoption is about use and transformation and those qualities operate against the preservationist grain of durability, that one must always be at the expense of the other. We say: perhaps that is true, but it is a risk we're willing to take because we don't want to be making monuments and cemeteries that people approach with reverence or fear. We want tools and stories that we use and adapt and are always making new again. But we also say: it is through use that something becomes invaluable, which may change or distort but will not destroy - which is the practical definition of durability. S.R. Ranganathan's very first Law of Library Science was "BOOKS ARE FOR USE", which we would extend to the library itself, such that when he arrives at his final law, "THE LIBRARY IS A LIVING ORGANISM", we note that to live means not only to change, but to live means to live _in the world_.
 
