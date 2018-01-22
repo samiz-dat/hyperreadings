@@ -149,7 +149,7 @@ Serres notes that *guest* and *host* are "the same word" in French; we might say
 
 ---
 
-### Role of institutions
+### The role of institutions in the age of distribution
 
 David Cameron launched a doomed initiative in 2010 called the Big Society, which paired large-scale cuts in public programs with a call for local communities to voluntarily self-organize to provide these fundamental services for themselves. This is not the political future that we should be working toward: since 2010, austerity policies have resulted in [120,000 excess deaths in England](http://bmjopen.bmj.com/content/7/11/e017722). In other words, while it might seem as though _institutions_ might be comparable to _servers_, inasmuch as both are centralized infrastructures, we should not give them up or allow them to be dismantled under the assumption that those infrastructures can simply be distributed and self-organized. On the contrary, institutions should be defended and organized in order to support the distributed protocols we are discussing.
 
