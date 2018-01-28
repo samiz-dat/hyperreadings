@@ -128,8 +128,6 @@ The syllabus is the manifesto of the twenty-first century. From [Your Baltimore 
 
 If a syllabus circulated as a HyperReadings document, then it could point directly to the texts and other media that it aggregates. But just as easily as it circulates, a HyperReadings syllabus could be forked into new versions: the syllabus is changed because there is a new essay out; or because of a political disagreement; or because following the syllabus produced new suggestions. These forks become a family tree where one can follow branches and trace epistemological mutations.
 
-### Self-education
-
 ## Proposition (or Presuppositions)
 
 While the software that we have begun writing is a proposition in and of itself, there is no guarantee _how_ it will be used. But when writing, we _are_ imagining exactly that, we are making intuitive and hopeful presuppositions about how it will be used, presuppositions that amount to a set of social propositions.
