@@ -134,7 +134,7 @@ If a syllabus circulated as a HyperReadings document, then it could point direct
 
 While the software that we have begun writing is a proposition in and of itself, there is no guarantee _how_ it will be used. But when writing, we _are_ imagining exactly that, we are making intuitive and hopeful presuppositions about how it will be used, presuppositions that amount to a set of social propositions.
 
-### Role of individuals
+### The role of individuals in the age of distribution
 
 Different people have different technical resources and capabilities, but everyone can contribute to an archive. By simply running the Dat Library software and adding an archive to it, a person is sharing their disk space and internet bandwidth in the service of that archive. At first, it is only the archive's index (a list of the contents) that is hosted, but if the person downloads the contents (or even just a small portion of the contents) then they are sharing in the hosting of the contents as well. Individuals, as supporters of an archive or members of a community, can organize together to guarantee the durability and accessibility of the archive. Saving a future UbuWeb from ever having to worry about if their 'ISP pulls the plug'. As supporters of many archives, members of many communities, they can use Dat Library to perform this function many times over.
 
@@ -145,8 +145,6 @@ On the Web, individuals are usually users or browsers - they use browsers. In sp
 > An invariable term through the transfer of the gift. It might be dangerous not to decide who is the host and who is the guest, who gives and who receives, who is the parasite and who is the table d’hote, who has the gift and who has the loss, and where hospitality begins with hospitality…
 
 Serres notes that *guest* and *host* are "the same word" in French; we might say the same for *client* and *server* in a distributed protocol. And we will embrace this multiplying hospitality, giving and taking without measure.
-
----
 
 ### The role of institutions in the age of distribution
 
