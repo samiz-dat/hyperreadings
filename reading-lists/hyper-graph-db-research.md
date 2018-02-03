@@ -65,3 +65,25 @@ This is a loose collection of links that have been collated through the developm
 - Mohsen Biparva, [Book-Burning or Genocide](http://en.izhamburg.de/index.aspx?pid=99&articleid=67937)
 - Jarrett M. Drake, [RadTech Meets RadArch: Towards A New Principle for Archives and Archival Description](https://medium.com/on-archivy/radtech-meets-radarch-towards-a-new-principle-for-archives-and-archival-description-568f133e4325)
 - Miriam Rasch, [Reflect and Act! Introduction to the Society of the Query Reader](http://networkcultures.org/query/2014/04/23/reflect-and-act-introduction-to-the-society-of-the-query-reader/)
+
+## unordered
+
+http://dublincore.org/documents/dc-rdf/
+http://milicicvuk.com/blog/2011/09/24/the-rdf-graph-uri-pattern/
+http://patterns.dataincubator.org/book/proxy-uris.html
+https://www.w3.org/standards/techs/rdf#w3c_all
+https://www.w3.org/ns/org#
+http://dublincore.org/2012/06/14/dcterms
+https://www.w3.org/2000/01/rdf-schema#
+https://www.w3.org/2002/07/owl#
+https://www.d3web.de/Wiki.jsp?page=Demo%20-%20Simpsons
+https://www.w3.org/TR/2012/REC-rdf-plain-literal-20121211/
+http://book.freeyourmetadata.org/
+https://pro.europeana.eu/resources/apis/record
+http://schematron.com/front-page/the-schematron-skeleton-implementation/
+https://www.w3.org/TR/skos-primer/
+http://www.willpowerinfo.co.uk/glossary.htm
+https://www.w3.org/1999/02/22-rdf-syntax-ns#
+https://old.datahub.io/dataset/doi
+https://rdfa.info/play/
+http://www.worldcat.org/title/fr-david/oclc/849686432&referer=brief_results
