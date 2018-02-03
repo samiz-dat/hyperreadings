@@ -87,3 +87,9 @@ https://www.w3.org/1999/02/22-rdf-syntax-ns#
 https://old.datahub.io/dataset/doi
 https://rdfa.info/play/
 http://www.worldcat.org/title/fr-david/oclc/849686432&referer=brief_results
+http://digital-libraries.saic.edu/cdm/singleitem/collection/jfabc/id/569/rec/1
+http://experiment.worldcat.org/oclc/940766981.ttl
+http://www.publicbooks.org/trump-syllabus-3-0/
+http://www.publicbooks.org/wp-json/wp/v2/posts?search=syllabus
+http://rdf-translator.appspot.com/
+https://alistapart.com/article/introduction-to-rdfa
