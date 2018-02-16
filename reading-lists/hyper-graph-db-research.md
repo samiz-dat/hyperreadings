@@ -12,24 +12,54 @@ This is a loose collection of links that have been collated through the developm
 - [DoCO, the Document Components Ontology](https://sparontologies.github.io/doco/current/doco.html)
 - [Dublin Core: DCMI Metadata Terms](http://dublincore.org/documents/dcmi-terms/)
 - [Using Dublin Core](http://dublincore.org/documents/2000/07/16/usageguide/qualified-html.shtml)
+- [The Citation Counting and Context Characterisation Ontology (C4O)](https://sparontologies.github.io/c4o/current/c4o.html)
+- [The RDA Registry](http://www.rdaregistry.info/)
+- [Open Metadata Registry - FRBRer](http://metadataregistry.org/schema/show/id/5.html)
+
+## RDF data
+
+### Large repositories
+
+- [Open Citations Corpus](http://opencitations.net/download)
+- [Wikipedia Dumps](http://wiki.dbpedia.org/news/dbpedia-based-rdf-dumps-wikidata)
+- [WorldCat Most Highly Held 2012](https://archive.org/services/purl/purl/dataset/WorldCat/datadumps/WorldCatMostHighlyHeld-2012-05-15.nt.gz)
+- [Open Library Dump 2016](https://old.datahub.io/dataset/open-library)
+- [Open Library Dumps](https://openlibrary.org/developers/dumps)
+- [Linked data Laundromat](http://lodlaundromat.org/)
+- The European Library (dead 2016)
+  - [Research Libraries UK Linked Open Data](http://www.theeuropeanlibrary.org/tel4/access/data/lod)
+  - [Research Libraries Bulk data](http://www.theeuropeanlibrary.org/tel4/access/data/opendata/details)
+- [Freebase](https://developers.google.com/freebase/) (dead 2016)
+
+### Single entry access points
+
+- [doi rdf data via crossref](https://www.crossref.org/blog/content-negotiation-for-crossref-dois/)
+- [WorldCat data](https://www.oclc.org/developer/develop/data-sets.en.html)
+  - eg. [Harper Lee, Go set a watchman (ttl)](http://experiment.worldcat.org/entity/work/data/2283978583.ttl)
+- [Open Library Restful API](https://openlibrary.org/dev/docs/restful_api)
+  - eg. [Judith Butler, Gender Trouble (rdf)](https://openlibrary.org/works/OL3292666W.rdf)
 
 ## Sparql
 
 - [SPARQL By Example](https://www.w3.org/2009/Talks/0615-qbe/)
+- [How to SPARQL](http://rdf.myexperiment.org/howtosparql?page=Using+the+SPARQL+Endpoint#)
 
 ## Projects
 
+- [Initiative for Open Citations](https://i4oc.org/)
 - [Public Knowledge Project](https://pkp.sfu.ca)
   - [Open Harvester Systems](https://pkp.sfu.ca/ohs/)
   - [Open Journal Systems](https://pkp.sfu.ca/ojs/)
 - [Open Archives Initiative](http://www.openarchives.org)
 - [Code{4}Lib](code4lib.org)
 - [Citation Style Language](http://citationstyles.org/developers/)
+- [The Cost of Knowledge Petition](http://thecostofknowledge.com/)
+- [RDF Balls](http://rballs.info/)
 
 ## Open Source Projects
 
 - [Terrier](https://github.com/Authorea/terrier)
-
+- [RDA Registry](https://github.com/RDARegistry)
 
 ## OA Repositories + Journals
 
@@ -41,6 +71,14 @@ This is a loose collection of links that have been collated through the developm
 - [Taipei Biennial 2012 Journal](http://www.taipeibiennial.org/2012/en/journal.html)
 - [Repositório Institucional UNESP](https://repositorio.unesp.br/?locale-attribute=en)
 - [SUPERVALENT THOUGHT](https://supervalentthought.com)
+- [arXiv.org](https://arxiv.org/)
+
+## Reading lists
+
+- [A Distributed Systems Reading List](https://dancres.github.io/Pages/)
+- [Humane Technology reading lists](https://community.humanetech.com/t/humane-technology-reading-lists/21/21)
+- [The Only Humane-Tech Reading List Ever](https://technological-simplicity.com/the-only-human-tech-reading-list-ever-9ccb6298890d?gi=3a2d84a9ca75)
+- [Decolonising Science Reading List](https://medium.com/@chanda/decolonising-science-reading-list-339fb773d51f)
 
 ## Articles
 
@@ -65,6 +103,7 @@ This is a loose collection of links that have been collated through the developm
 - Mohsen Biparva, [Book-Burning or Genocide](http://en.izhamburg.de/index.aspx?pid=99&articleid=67937)
 - Jarrett M. Drake, [RadTech Meets RadArch: Towards A New Principle for Archives and Archival Description](https://medium.com/on-archivy/radtech-meets-radarch-towards-a-new-principle-for-archives-and-archival-description-568f133e4325)
 - Miriam Rasch, [Reflect and Act! Introduction to the Society of the Query Reader](http://networkcultures.org/query/2014/04/23/reflect-and-act-introduction-to-the-society-of-the-query-reader/)
+- Colleen Flaherty, [References and Citations for All](https://www.insidehighered.com/news/2017/12/06/scholars-push-free-access-online-citation-data-saying-they-need-and-deserve-access#.WigwHdRyMdA.twitter)
 
 ## unordered
 
