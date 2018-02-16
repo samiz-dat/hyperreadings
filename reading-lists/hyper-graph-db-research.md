@@ -72,6 +72,8 @@ This is a loose collection of links that have been collated through the developm
 - [Repositório Institucional UNESP](https://repositorio.unesp.br/?locale-attribute=en)
 - [SUPERVALENT THOUGHT](https://supervalentthought.com)
 - [arXiv.org](https://arxiv.org/)
+- [Public Library of Science (PLOS)](https://www.plos.org/)
+- [Directory of Open Access Journals (DOAJ)](https://doaj.org/)
 
 ## Reading lists
 
