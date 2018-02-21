@@ -43,6 +43,7 @@ This is a loose collection of links that have been collated through the developm
 
 - [SPARQL By Example](https://www.w3.org/2009/Talks/0615-qbe/)
 - [How to SPARQL](http://rdf.myexperiment.org/howtosparql?page=Using+the+SPARQL+Endpoint#)
+- [SPARQL Examples](https://codyburleson.com/display/ldn/SPARQL+examples)
 
 ## Projects
 
@@ -55,6 +56,7 @@ This is a loose collection of links that have been collated through the developm
 - [Citation Style Language](http://citationstyles.org/developers/)
 - [The Cost of Knowledge Petition](http://thecostofknowledge.com/)
 - [RDF Balls](http://rballs.info/)
+- [Linked Open Vocabularies](http://lov.okfn.org/dataset/lov)
 
 ## Open Source Projects
 
