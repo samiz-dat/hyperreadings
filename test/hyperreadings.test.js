@@ -19,16 +19,14 @@ describe.only('hyperreadings', () => {
   })
 
   it('returns the root', () => {
-    function iterate (res) {
-      console.log('results:', res)
-      if (res) {
-        return readings
-          .getNext(res['?next'] || res['?first'])
-          .then(iterate)
-      }
-      return null
+    function processContents (res) {
+      console.log('content', res['?type'], res['?content'], res['?value'])
+      return res.contents(processContents)
     }
-    return readings.getFirst('hg:b7')
-      .then(iterate)
-  })
+    console.time('iterate')
+    return readings.contents(null, processContents)
+      .then(() => {
+        console.timeEnd('iterate')
+      })
+  }).timeout(10000)
 })
