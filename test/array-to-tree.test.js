@@ -19,7 +19,7 @@ describe('arrayToTree', () => {
     ]
     var hashSplitter = (value) => {
       if (value && value[0] === '#') return value.length
-      return undefined
+      return null
     }
     expect(arrayToTree(input, hashSplitter)).to.deep.eql(expected)
   })
@@ -39,7 +39,7 @@ describe('arrayToTree', () => {
     ]
     var hashSplitter = (value) => {
       if (value && value[0] === '#') return value.length
-      return undefined
+      return null
     }
     var transform = (array) => {
       return { children: array }
