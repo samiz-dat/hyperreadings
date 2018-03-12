@@ -108,6 +108,7 @@ This is a loose collection of links that have been collated through the developm
 - Jarrett M. Drake, [RadTech Meets RadArch: Towards A New Principle for Archives and Archival Description](https://medium.com/on-archivy/radtech-meets-radarch-towards-a-new-principle-for-archives-and-archival-description-568f133e4325)
 - Miriam Rasch, [Reflect and Act! Introduction to the Society of the Query Reader](http://networkcultures.org/query/2014/04/23/reflect-and-act-introduction-to-the-society-of-the-query-reader/)
 - Colleen Flaherty, [References and Citations for All](https://www.insidehighered.com/news/2017/12/06/scholars-push-free-access-online-citation-data-saying-they-need-and-deserve-access#.WigwHdRyMdA.twitter)
+- Manu Sporny, [JSON-LD and Why I Hate the Semantic Web](http://manu.sporny.org/2014/json-ld-origins-2/)
 
 ## unordered
 
