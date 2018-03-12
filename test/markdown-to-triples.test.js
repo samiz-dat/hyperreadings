@@ -9,7 +9,7 @@ var markdown = require('../lib/markdown-to-triples')
 // var utils = require('../lib/utils')
 var fs = require('fs')
 
-describe.only('toStream', () => {
+describe('toStream', () => {
   it('returns a stream of triples representing the document', (done) => {
     const file = fs.readFileSync('./reading-lists/hyper-graph-db-research.md')
     // '# Hello *world*!!!'
