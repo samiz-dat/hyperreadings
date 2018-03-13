@@ -19,9 +19,10 @@ describe.only('hyperreadings', () => {
   })
 
   it('returns the root', () => {
-    function processContents (res) {
-      console.log('content', res['?type'], res['?content'], res['?value'])
-      return res.contents(processContents)
+    function processContents (contents) {
+      return readings.get(contents.id)
+        .then(value => console.log(contents.id, JSON.stringify(value, null, 2)))
+        .then(() => readings.contents(contents.id, processContents))
     }
     console.time('iterate')
     return readings.contents(null, processContents)
