@@ -44,11 +44,16 @@ describe.only('hyperreadings', () => {
     var r = await hr.root()
     await hr.createNode('hr:root')
     r = await hr.root()
-    console.log(r)
+    // console.log(r)
     var rootNode = await hr.node(r)
-    console.log(rootNode)
-    var section = await hr.createNode('doco:section')
-    await rootNode.insertNode(section)
-
-  })
+    // console.log(rootNode)
+    for (var i = 0; i < 100; i++) {
+      var section = await hr.createNode('doco:section')
+      console.log('inserting')
+      await rootNode.insertNode(section)
+    }
+    console.time('iterating over sections')
+    await rootNode.iterate((node) => console.log(node.name, node.type))
+    console.timeEnd('iterating over sections')
+  }).timeout(10000)
 })
