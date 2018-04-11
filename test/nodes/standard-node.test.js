@@ -119,8 +119,26 @@ describe.only('StandardNode', () => {
   })
 
   describe('#remove(attr, value)', () => {
-    it('removes all connections to nodes matching attr (partial)')
-    it('removes all connections to nodes matching attr and value (exact)')
+    let node
+    beforeEach(async () => {
+      node = await hr.createNode('doco:Sentence')
+      await node.add('po:contains', 1)
+      await node.add('po:contains', 2)
+      await node.add('po:contains', 3)
+      await node.add('rdf:value', 'a sentence')
+    })
+    it('removes all connections to nodes matching attr (partial)', async () => {
+      expect(await node.has('po:contains')).to.eql(true)
+      await node.remove('po:contains')
+      expect(await node.has('po:contains')).to.eql(false)
+    })
+    it('removes all connections to nodes matching attr and value (exact)', async () => {
+      expect(await node.has('po:contains', 1)).to.eql(true)
+      await node.remove('po:contains', 1)
+      expect(await node.has('po:contains', 3)).to.eql(true)
+      expect(await node.has('po:contains', 2)).to.eql(true)
+      expect(await node.has('po:contains', 1)).to.eql(false)
+    })
   })
 
   describe('#children()', () => {
