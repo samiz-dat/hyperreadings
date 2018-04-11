@@ -118,6 +118,25 @@ describe.only('StandardNode', () => {
     })
   })
 
+  describe('#remove(attr, value)', () => {
+    it('removes all connections to nodes matching attr (partial)')
+    it('removes all connections to nodes matching attr and value (exact)')
+  })
+
+  describe('#children()', () => {
+    it('returns descendant nodes')
+    it('returns does not return literal values')
+  })
+
+  describe('#parents()', () => {
+    it('returns all the parents of this node')
+  })
+
+  describe('#destroy()', () => {
+    it('removes all connections to this node and all connections from this to other nodes')
+    it('recursively destroys all children nodes too')
+  })
+
   describe('#disconnect()', () => {
     it('removes all connections between this node and its parents', async () => {
       // setup
