@@ -9,13 +9,13 @@ HyperReadings is just a collection of standardised operations built on top of a 
 container is object with
   predicate: co:containsAsHeader (optional)
   predicate: co:contains
-  predicate: po:firstItem
+  predicate: co:firstItem
 
 container has operations:
   iterate:
-    1. get the po:firstItem,
+    1. get the co:firstItem,
     2. execute cb,
-    3. then if has po:nextItem follow it,
+    3. then if has co:nextItem follow it,
        else finished
     4. repeat 2...
 
@@ -109,8 +109,8 @@ Adds a new item to container like node.
 
 1. inserts`< node co:contains newNode >`
 2. make newItem `< newItem co:hasContent newNode >`
-3. if `< node po:firstItem ? >` does not exist, insert`< node po:firstItem newItem >`
-  else find lastItem of node, or not at index-1, and  insert `<lastItemNode po:nextItem > newItem >`
+3. if `< node co:firstItem ? >` does not exist, insert`< node co:firstItem newItem >`
+  else find lastItem of node, or not at index-1, and  insert `<lastItemNode co:nextItem > newItem >`
 4. return existing node
 
 #### `node.removeItem(nodeToDelete || index)`
@@ -120,10 +120,10 @@ Only for container like nodes
 1. find node or node at index
 2. get nodeToDeletes nextItem
 3. delete key `< node po:contains nodeToDelete >`
-4. file all references `< ? po:nextItem nodeToDelete >`
-5. update all to `< ? po:nextItem nextItemOfNoteToDelete >`
-6. if `< node po:firstItem nodeToDelete >` exist
-   update it to `< node po:firstItem nextItemOfNoteToDelete >`
+4. file all references `< ? co:nextItem nodeToDelete >`
+5. update all to `< ? co:nextItem nextItemOfNoteToDelete >`
+6. if `< node co:firstItem nodeToDelete >` exist
+   update it to `< node co:firstItem nextItemOfNoteToDelete >`
 
 *ToDo: Factor in removing a number of items at a time*
 
