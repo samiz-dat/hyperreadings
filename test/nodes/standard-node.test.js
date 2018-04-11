@@ -76,6 +76,48 @@ describe.only('StandardNode', () => {
     })
   })
 
+  describe('#has(attr, value)', () => {
+    let node
+    beforeEach(async () => {
+      node = await hr.createNode('doco:Sentence')
+    })
+
+    it('returns false if node does not have matching attribute (partial)', async () => {
+      expect(await node.has('c4o:isRelevantTo')).to.eql(false)
+    })
+
+    it('returns false if node does not have matching attribute (exact)', async () => {
+      expect(await node.has('c4o:isRelevantTo', 'missing')).to.eql(false)
+    })
+
+    it('returns true if node does has matching attribute (partial)', async () => {
+      await node.set('po:contains', 'first value')
+      expect(await node.has('po:contains')).to.eql(true)
+    })
+
+    it('returns true if node has matching attribute (exact)', async () => {
+      await node.set('po:contains', 'first value')
+      expect(await node.has('po:contains', 'first value')).to.eql(true)
+    })
+
+    it('returns false if node does not have matching attribute (partial again)', async () => {
+      await node.set('po:contains', 'first value')
+      expect(await node.has('c4o:hasContent')).to.eql(false)
+    })
+
+    it('return true if matches one of many attributes', async () => {
+      await node.add('po:contains', 'first value')
+      await node.add('po:contains', 'another')
+      expect(await node.has('po:contains', 'first value')).to.eql(true)
+    })
+
+    it('does not match deleted values', async () => {
+      await node.set('po:contains', 'first value')
+      await node.set('po:contains', 'another')
+      expect(await node.has('po:contains', 'first value')).to.eql(false)
+    })
+  })
+
   describe('#disconnect()', () => {
     it('removes all connections between this node and its parents', async () => {
       // setup
