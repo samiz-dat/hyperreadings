@@ -124,12 +124,48 @@ describe.only('StandardNode', () => {
   })
 
   describe('#children()', () => {
-    it('returns descendant nodes')
-    it('returns does not return literal values')
+    let node
+    beforeEach(async () => {
+      node = await hr.createNode('oa:Annotation')
+      const citationA = await hr.createNode('cito:Citation')
+      await citationA.add('rdf:value', 'A')
+      const citationB = await hr.createNode('cito:Citation')
+      await citationB.add('rdf:value', 'B')
+      await node.add('oa:hasTarget', citationA)
+      await node.add('po:contains', citationB)
+    })
+    it('returns descendant nodes', async () => {
+      const children = await node.children()
+      expect(children).to.have.length(2)
+      expect(await children[0].get('rdf:value')).to.eql('A')
+      expect(await children[1].get('rdf:value')).to.eql('B')
+    })
+    it('returns does not return literal values', async () => {
+      await node.add('ao:hasBody', 'somedata')
+      await node.add('rdf:value', 1)
+      const children = await node.children()
+      expect(children).to.have.length(2)
+      expect(await children[0].get('rdf:value')).to.eql('A')
+      expect(await children[1].get('rdf:value')).to.eql('B')
+    })
   })
 
   describe('#parents()', () => {
-    it('returns all the parents of this node')
+    it('returns all the parents of this node', async () => {
+      // setup
+      const annotationA = await hr.createNode('oa:Annotation')
+      const annotationB = await hr.createNode('oa:Annotation')
+      const citation = await hr.createNode('cito:Citation')
+      await annotationA.set('oa:hasTarget', citation)
+      await annotationA.set('oa:hasBody', 'annotation 1')
+      await annotationB.set('oa:hasTarget', citation)
+      await annotationB.set('oa:hasBody', 'annotation 2')
+      // parents
+      const parents = await citation.parents()
+      expect(parents).to.have.length(2)
+      expect(parents[0].name).to.eql(annotationB.name)
+      expect(parents[1].name).to.eql(annotationA.name)
+    })
   })
 
   describe('#destroy()', () => {
