@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 var expect = require('chai').expect
 var hyperreadings = require('../../lib/hyperreadings')
+var utils = require('../../lib/utils')
 
 describe.only('StandardNode', () => {
   let hr
@@ -152,19 +153,21 @@ describe.only('StandardNode', () => {
       await node.add('oa:hasTarget', citationA)
       await node.add('po:contains', citationB)
     })
-    it('returns descendant nodes', async () => {
-      const children = await node.children()
-      expect(children).to.have.length(2)
-      expect(await children[0].get('rdf:value')).to.eql('A')
-      expect(await children[1].get('rdf:value')).to.eql('B')
-    })
-    it('returns does not return literal values', async () => {
-      await node.add('ao:hasBody', 'somedata')
-      await node.add('rdf:value', 1)
-      const children = await node.children()
-      expect(children).to.have.length(2)
-      expect(await children[0].get('rdf:value')).to.eql('A')
-      expect(await children[1].get('rdf:value')).to.eql('B')
+    context('default arguments', () => {
+      it('returns descendant nodes', async () => {
+        const children = await node.children()
+        expect(children).to.have.length(2)
+        expect(await children[0].get('rdf:value')).to.eql('A')
+        expect(await children[1].get('rdf:value')).to.eql('B')
+      })
+      it('returns does not return literal values', async () => {
+        await node.add('ao:hasBody', 'somedata')
+        await node.add('rdf:value', 1)
+        const children = await node.children()
+        expect(children).to.have.length(2)
+        expect(await children[0].get('rdf:value')).to.eql('A')
+        expect(await children[1].get('rdf:value')).to.eql('B')
+      })
     })
   })
 
@@ -184,11 +187,6 @@ describe.only('StandardNode', () => {
       expect(parents[0].name).to.eql(annotationB.name)
       expect(parents[1].name).to.eql(annotationA.name)
     })
-  })
-
-  describe('#destroy()', () => {
-    it('removes all connections to this node and all connections from this to other nodes')
-    it('recursively destroys all children nodes too')
   })
 
   describe('#disconnect()', () => {
@@ -231,6 +229,113 @@ describe.only('StandardNode', () => {
           expect(value).to.eql(expected.shift())
         })
         expect(expected).to.have.length(0)
+      })
+    })
+  })
+
+  describe('#destroy()', () => {
+    context('with circular structure', () => {
+      let A, B, C, D
+      beforeEach(async () => {
+        A = await hr.createNode('A')
+        B = await hr.createNode('B')
+        C = await hr.createNode('C')
+        D = await hr.createNode('D')
+        await A.set('test:pointsTo', B)
+        await B.set('test:pointsTo', C)
+        await C.set('test:pointsTo', D)
+        await D.set('test:pointsTo', A)
+      })
+      it('removes all entities in a circular loop', async () => {
+        var items = await hr._get({ predicate: 'test:pointsTo' })
+        expect(items).to.have.length(4)
+        await A.destroy()
+        items = await hr._get({ predicate: 'test:pointsTo' })
+        expect(items).to.have.length(0)
+      })
+    })
+    context('with molecule-like structure', () => {
+      let A, B, C, D, outside1, outside2
+      beforeEach(async () => {
+        A = await hr.createNode('A')
+        B = await hr.createNode('B')
+        C = await hr.createNode('C')
+        D = await hr.createNode('D')
+        outside1 = await hr.createNode('outside1')
+        outside2 = await hr.createNode('outside2')
+        await outside1.set('test:pointsTo', A)
+        await outside2.set('test:pointsTo', D)
+        await A.set('test:pointsTo', B)
+        await B.set('test:pointsTo', C)
+        await C.set('test:pointsTo', D)
+        await D.set('test:pointsTo', A)
+      })
+      it('removes all entities in a circular loop', async () => {
+        var items = await hr._get({ predicate: 'test:pointsTo' })
+        expect(items).to.have.length(6)
+        await A.destroy()
+        items = await hr._get({ predicate: 'rdf:type' })
+        for (var item of items) {
+          console.log((await hr.node(item)).type, item.subject)
+        }
+        items = await hr._get({ predicate: 'test:pointsTo' })
+        for (item of items) {
+          console.log(item)
+        }
+        // console.log(await hr.node({ name: 'hr://n3'}))
+        // expect(items).to.have.length(2)
+      })
+    })
+    context('with container-like structure', () => {
+      let intro, title, p1, p2, p3, p4
+      beforeEach(async () => {
+        intro = await hr.createNode('doco:Section')
+        title = await hr.createNode('doco:Title')
+        await title.set('rdf:value', 'title')
+        await intro.set('po:containsAsHeader', title)
+        await intro.insertNode(title)
+        p1 = await hr.createNode('doco:Paragraph')
+        await p1.set('rdf:value', 'p1')
+        await intro.insertNode(p1)
+        p2 = await hr.createNode('doco:Paragraph')
+        await intro.insertNode(p2)
+        await p2.set('rdf:value', 'p2')
+        p3 = await hr.createNode('doco:Paragraph')
+        await intro.insertNode(p3)
+        await p3.set('rdf:value', 'p3')
+        p4 = await hr.createNode('doco:Paragraph')
+        await intro.insertNode(p4)
+        await p4.set('rdf:value', 'p4')
+      })
+      it('removes node from parents and destroys it children recursively (simple)', async () => {
+        await p3.destroy()
+        expect(await p3.parents()).to.have.length(0)
+        expect(await p3.children(true)).to.have.length(0)
+        expect(await p3.get('rdf:type')).to.have.equal(null)
+        const expected = ['title', 'p1', 'p2', 'p4']
+        await intro.iterate(async (node) => {
+          const value = await node.get('rdf:value')
+          expect(value).to.eql(expected.shift())
+        })
+        expect(expected).to.have.length(0)
+      })
+      it('removes node from parents and destroys it children recursively (simple again)', async () => {
+        await title.destroy()
+        expect(await title.parents()).to.have.length(0)
+        expect(await title.children(true)).to.have.length(0)
+        expect(await title.get('rdf:type')).to.have.equal(null)
+        const expected = ['p1', 'p2', 'p3', 'p4']
+        await intro.iterate(async (node) => {
+          const value = await node.get('rdf:value')
+          expect(value).to.eql(expected.shift())
+        })
+        expect(expected).to.have.length(0)
+      })
+      it('removes node from parents and destroys it children recursively (complex)', async () => {
+        await intro.destroy()
+        expect(await intro.parents()).to.have.length(0)
+        expect(await intro.children(true)).to.have.length(0)
+        expect(await intro.get('rdf:type')).to.have.equal(null)
       })
     })
   })
