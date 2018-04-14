@@ -261,29 +261,45 @@ describe.only('StandardNode', () => {
         B = await hr.createNode('B')
         C = await hr.createNode('C')
         D = await hr.createNode('D')
-        outside1 = await hr.createNode('outside1')
-        outside2 = await hr.createNode('outside2')
+        outside1 = await hr.createNode('O1')
+        outside2 = await hr.createNode('O2')
         await outside1.set('test:pointsTo', A)
         await outside2.set('test:pointsTo', D)
         await A.set('test:pointsTo', B)
         await B.set('test:pointsTo', C)
         await C.set('test:pointsTo', D)
         await D.set('test:pointsTo', A)
+        /**
+         *   O1 -- A -- B
+         *         |    |
+         *   O2 -- D -- C
+        */
       })
       it('removes all entities in a circular loop', async () => {
+        // confirm
         var items = await hr._get({ predicate: 'test:pointsTo' })
         expect(items).to.have.length(6)
+        // perform operation
         await A.destroy()
-        items = await hr._get({ predicate: 'rdf:type' })
-        for (var item of items) {
-          console.log((await hr.node(item)).type, item.subject)
-        }
+        /** expecting
+         *
+         *   O1
+         *
+         *   O2 -- D
+        */
         items = await hr._get({ predicate: 'test:pointsTo' })
-        for (item of items) {
-          console.log(item)
-        }
-        // console.log(await hr.node({ name: 'hr://n3'}))
-        // expect(items).to.have.length(2)
+        expect(items).to.have.length(1)
+        // check that 01 still exists
+        expect(await hr.nodesByType('O1')).to.have.length(1)
+        // check that 02 still exists
+        expect(await hr.nodesByType('O2')).to.have.length(1)
+        // check that D still exists
+        const d = await hr.nodesByType('D')
+        expect(d).to.have.length(1)
+        const dParents = await d[0].parents()
+        expect(dParents).to.have.length(1)
+        expect(dParents[0].type).to.eql('O2')
+        expect(dParents[0].rel).to.eql('test:pointsTo')
       })
     })
     context('with container-like structure', () => {
