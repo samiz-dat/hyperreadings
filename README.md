@@ -1,6 +1,6 @@
 # HyperReadings
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/sdockray/hyperreadings.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/sdockray/hyperreadings.svg)](https://greenkeeper.io/) [![Coverage Status](https://coveralls.io/repos/github/sdockray/hyperreadings/badge.svg?branch=master)](https://coveralls.io/github/sdockray/hyperreadings?branch=master) [![Build Status](https://travis-ci.org/sdockray/hyperreadings.svg?branch=master)](https://travis-ci.org/sdockray/hyperreadings)
 
 This project is a work in progress.
 

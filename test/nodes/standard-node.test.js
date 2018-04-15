@@ -2,7 +2,7 @@
 var expect = require('chai').expect
 var hyperreadings = require('../../lib/hyperreadings')
 
-describe.only('StandardNode', () => {
+describe('StandardNode', () => {
   let hr
   beforeEach(done => {
     hr = hyperreadings.HyperReadings()

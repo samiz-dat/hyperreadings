@@ -32,7 +32,7 @@ describe('ContainerNode', () => {
     })
   })
 
-  describe('remove()', async () => {
+  xdescribe('remove()', async () => {
     it('removes existing node', async () => {
       const c = await hr.createNode('doco:Section')
       const inserted = []
