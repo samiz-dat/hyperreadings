@@ -1,5 +1,7 @@
 # HyperReadings
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/sdockray/hyperreadings.svg)](https://greenkeeper.io/)
+
 This project is a work in progress.
 
 See https://sdockray.github.io/hyperreadings/
