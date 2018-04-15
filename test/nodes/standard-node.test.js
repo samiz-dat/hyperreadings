@@ -1,7 +1,6 @@
 /* eslint-env mocha */
 var expect = require('chai').expect
 var hyperreadings = require('../../lib/hyperreadings')
-var utils = require('../../lib/utils')
 
 describe.only('StandardNode', () => {
   let hr
@@ -270,9 +269,9 @@ describe.only('StandardNode', () => {
         await C.set('test:pointsTo', D)
         await D.set('test:pointsTo', A)
         /**
-         *   O1 -- A -- B
-         *         |    |
-         *   O2 -- D -- C
+         *   O1 ► A ► B
+         *        ▲   ▼
+         *   O2 ► D ◄ C
         */
       })
       it('removes all entities in a circular loop', async () => {
@@ -284,8 +283,7 @@ describe.only('StandardNode', () => {
         /** expecting
          *
          *   O1
-         *
-         *   O2 -- D
+         *   O2 ► D
         */
         items = await hr._get({ predicate: 'test:pointsTo' })
         expect(items).to.have.length(1)
