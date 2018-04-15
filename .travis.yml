@@ -1,0 +1,11 @@
+language: node_js
+sudo: false
+node_js:
+#  - 4 temporarily disabled while transpiling with babel is not setup
+#  - 6
+  - 8
+  - 9
+script:
+  - npm run travis
+after_script:
+  - npm run report-coverage
