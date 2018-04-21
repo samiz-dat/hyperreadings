@@ -43,7 +43,7 @@
     "mocha": "^5.0.1",
     "n3": "^0.11.2",
     "nyc": "^11.6.0",
-    "random-access-memory": "^2.4.0",
+    "random-access-memory": "^3.0.0",
     "standard": "^11.0.0"
   }
 }
