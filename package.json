@@ -41,7 +41,7 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "mocha": "^5.0.1",
-    "n3": "^0.11.2",
+    "n3": "^1.0.0-alpha",
     "nyc": "^11.6.0",
     "random-access-memory": "^2.4.0",
     "standard": "^11.0.0"
