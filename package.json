@@ -1,5 +1,5 @@
 {
-  "name": "hyperreadings",
+  "name": "hyper-readings",
   "version": "0.0.1",
   "description": "a tool for making and sharing p2p distributed reading lists",
   "main": "index.js",
@@ -9,6 +9,7 @@
   "scripts": {
     "test": "mocha",
     "tdd": "mocha -w",
+    "lint": "eslint .",
     "travis": "nyc npm run test",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -41,7 +42,6 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "mocha": "^5.0.1",
-    "n3": "^0.11.2",
     "nyc": "^11.6.0",
     "random-access-memory": "^2.4.0",
     "standard": "^11.0.0"
