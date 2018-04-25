@@ -32,7 +32,9 @@
   "dependencies": {
     "hyper-graph-db": "^0.3.1",
     "marked": "^0.3.15",
-    "parse5": "^4.0.0"
+    "nanoiterator": "^1.1.0",
+    "parse5": "^4.0.0",
+    "random-access-memory": "^3.0.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
