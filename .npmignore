@@ -1,0 +1,11 @@
+node_modules/
+coverage/
+.nyc_output/
+*.log
+.DS_Store
+
+# documentation and test folders not to be packaged with npm
+presentations/
+docs/
+test/
+reading-lists/
