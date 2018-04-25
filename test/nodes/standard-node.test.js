@@ -5,7 +5,7 @@ var hyperreadings = require('../../lib/hyperreadings')
 describe('StandardNode', () => {
   let hr
   beforeEach(done => {
-    hr = hyperreadings.HyperReadings()
+    hr = hyperreadings()
     hr.on('ready', done)
   })
 

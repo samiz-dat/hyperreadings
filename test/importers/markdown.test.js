@@ -2,8 +2,7 @@
 
 // var expect = require('chai').expect
 // var fs = require('fs')
-var ram = require('random-access-memory')
-var hyperreadings = require('../../lib/hyperreadings').HyperReadings
+var hyperreadings = require('../../lib/hyperreadings')
 var markdownImporter = require('../../lib/importers/markdown')
 
 describe('markdownImporter', () => {
@@ -11,8 +10,8 @@ describe('markdownImporter', () => {
     // const file = fs.readFileSync('./reading-lists/hyper-graph-db-research.md')
     // '# Hello *world*!!!'
     const test = '# yes\n\nno\nmaybe'
-    const hr = hyperreadings(() => ram())
-    await markdownImporter(hr, test) //file.toString())
+    const hr = hyperreadings()
+    await markdownImporter(hr, test) // file.toString())
     // const base = await hr.root()
     // await base.iterate(print)
     // async function print (node) {
