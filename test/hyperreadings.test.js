@@ -26,7 +26,7 @@ describe('hyperreadings', () => {
       })
     })
 
-    describe.only('hr.importFile(filename, opts)', () => {
+    describe('hr.importFile(filename, opts)', () => {
       it('throws error if filename is not given', async () => {
         expect(() => hr.importFile()).to.throw(/requires filename to be a string/)
       })
@@ -38,7 +38,7 @@ describe('hyperreadings', () => {
       })
     })
 
-    describe.only('hr.import(data, opts)', () => {
+    describe('hr.import(data, opts)', () => {
       it('resolves to undefined when no data is provided', async () => {
         var data = await hr.import()
         expect(data).to.eql(undefined)
