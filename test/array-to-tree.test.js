@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
-var expect = require('chai').expect
-var arrayToTree = require('../lib/array-to-tree')
+import { expect } from 'chai'
+import arrayToTree from '../lib/array-to-tree'
 
 describe('arrayToTree', () => {
   it('takes a flat array and makes it into a nested array', () => {

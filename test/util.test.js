@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
-// var expect = require('chai').expect
-// var utils = require('../lib/utils')
+// import { expect } from 'chai'
+// import hyperreadings from '../lib/utils'
 
 describe('isRdfLiteral', () => {
   it('needs to be tested')
