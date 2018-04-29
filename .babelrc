@@ -1,0 +1,24 @@
+{
+  "env": {
+    "development": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": { "node": "8" }
+          }
+        ]
+      ]
+    },
+    "test": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": { "node": "8" }
+          }
+        ]
+      ]
+    }
+  }
+}

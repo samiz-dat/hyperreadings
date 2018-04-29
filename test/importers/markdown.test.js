@@ -2,8 +2,8 @@
 
 // var expect = require('chai').expect
 // var fs = require('fs')
-var hyperreadings = require('../../lib/hyperreadings')
-var markdownImporter = require('../../lib/importers/markdown')
+import hyperreadings from '../../lib/hyperreadings'
+import markdownImporter from '../../lib/importers/markdown'
 
 describe('markdownImporter', () => {
   it('imports markdown file into a hyper readinglist', async () => {

@@ -1,6 +1,6 @@
 /* eslint-env mocha */
-var expect = require('chai').expect
-var hyperreadings = require('../../lib/hyperreadings')
+import { expect } from 'chai'
+import hyperreadings from '../../lib/hyperreadings'
 // var utils = require('../lib/utils')
 // var fs = require('fs')
 
