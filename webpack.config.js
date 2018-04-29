@@ -8,7 +8,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'hyper-readings.js',
     library: 'HyperReadings',
-    libraryTarget: 'commonjs'
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
+    globalObject: `typeof self !== 'undefined' ? self : this`
   },
   externals: [
     'fs',
@@ -23,7 +25,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader'
         }
