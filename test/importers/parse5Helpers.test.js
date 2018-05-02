@@ -50,17 +50,17 @@ describe('textContent', () => {
     expect(textContent(node)).to.eql('\n    over\n    lines\n    ')
   })
   it('returns text content from node (preserves white spaces)', () => {
-    const fragment = `<div>    over     lines      </div>`
+    const fragment = '<div>    over     lines      </div>'
     const node = parse5.parseFragment(fragment).childNodes[0]
     expect(textContent(node)).to.eql('    over     lines      ')
   })
   it('returns text content from node (html breaks)', () => {
-    const fragment = `<div>over</br>lines</div>`
+    const fragment = '<div>over</br>lines</div>'
     const node = parse5.parseFragment(fragment).childNodes[0]
     expect(textContent(node)).to.eql('over\nlines')
   })
   it('returns text content from node (html breaks unclosed)', () => {
-    const fragment = `<div>over<br>lines</div>`
+    const fragment = '<div>over<br>lines</div>'
     const node = parse5.parseFragment(fragment).childNodes[0]
     expect(textContent(node)).to.eql('over\nlines')
   })
