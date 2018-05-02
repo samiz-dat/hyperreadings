@@ -19,8 +19,7 @@ describe('markdownImporter', () => {
       })
     })
     it('has an empty head', async () => {
-      const heads = await hr.nodesByType('hr:head', {limit: 1})
-      const head = heads[0]
+      const head = await hr.head()
       await head.iterate((node) => {
         expect.fail()
       })
@@ -34,12 +33,12 @@ describe('markdownImporter', () => {
       })
     })
     it('has section to have Title and Paragraph', async () => {
-      const bodys = await hr.nodesByType('doco:Section', {limit: 1})
-      const body = bodys[0]
+      const body = await hr.body()
+      const section = await body.get('po:contains')
       const expected = [
         { type: 'doco:Title', 'c4o:hasContent': 'yes' },
         { type: 'doco:Paragraph', 'c4o:hasContent': 'no\nmaybe' }]
-      await body.iterate(async (node) => {
+      await section.iterate(async (node) => {
         const x = expected.shift()
         expect(node.type).to.eql(x.type)
         expect(await node.get('c4o:hasContent')).to.eql(x['c4o:hasContent'])
