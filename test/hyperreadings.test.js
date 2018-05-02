@@ -62,11 +62,43 @@ describe('hyperreadings', () => {
       })
     })
 
-    // describe('hr.createNode(type)', () => {
-    //   it('adds a new blank node to the graph', async () => {
-    //     const n = await hr.createNode('http://example.com/namespace/')
-    //     // find disconnected nodes and expect node.name to be found.
-    //   })
-    // })
+    describe('hr.nodesByType(type)', () => {
+      it('adds a new blank node to the graph', async () => {
+        const type = 'http://example.com/namespace/'
+        await hr.createNode(type)
+        await hr.createNode(type)
+        await hr.createNode('not-this-one')
+        const nodes = await hr.nodesByType(type)
+        expect(nodes).to.have.length(2)
+        nodes.forEach(node => expect(node.type).to.eql(type))
+      })
+    })
+
+    describe('hr.createNode(type)', () => {
+      it('adds a new blank node to the graph of type', async () => {
+        const type = 'http://example.com/namespace/'
+        const n = await hr.createNode(type)
+        const nodes = await hr.nodesByType(type)
+        expect(nodes).to.have.length(1)
+        expect(nodes[0].name).to.eql(n.name)
+      })
+      it('returns rejected promise if no type is provided', () => {
+        return hr.createNode()
+          .then(() => expect.fail())
+          .catch(err => {
+            expect(err).to.be.an('error')
+            expect(err.message).to.be.string('Cannot create a node without type')
+          })
+      })
+      it('allows you to set properties when creating', async () => {
+        const type = 'http://example.com/namespace/'
+        const data = {'rdf:value': 23, 'c4o:hasContent': 'very import contents'}
+        const n = await hr.createNode(type, data)
+        const nodes = await hr.nodesByType(type)
+        expect(nodes).to.have.length(1)
+        expect(await n.get('rdf:value')).to.eql(data['rdf:value'])
+        expect(await n.get('c4o:hasContent')).to.eql(data['c4o:hasContent'])
+      })
+    })
   })
 })
