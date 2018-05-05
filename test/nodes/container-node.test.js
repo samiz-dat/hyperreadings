@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import { expect } from 'chai'
-import hyperreadings from '../../lib/hyperreadings'
+import { ramHyperReadings } from '../helpers/general'
 // var utils = require('../lib/utils')
 // var fs = require('fs')
 
@@ -8,7 +8,7 @@ describe('ContainerNode', () => {
   let hr
   beforeEach(done => {
     // const file = fs.readFileSync('./reading-lists/hyper-graph-db-research.md')
-    hr = hyperreadings()
+    hr = ramHyperReadings()
     hr.on('ready', done)
   })
 
