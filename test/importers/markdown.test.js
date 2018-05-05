@@ -1,15 +1,15 @@
 /* eslint-env mocha */
 
 import { expect } from 'chai'
-import hyperreadings from '../../lib/hyperreadings'
 import markdownImporter from '../../lib/importers/markdown'
+import { ramHyperReadings } from '../helpers/general'
 
 describe('markdownImporter', () => {
   context('with very simple markdown', () => {
     let hr
     before(async () => {
       const test = '# yes\n\nno\nmaybe'
-      hr = hyperreadings()
+      hr = ramHyperReadings()
       return markdownImporter(hr, test)
     })
     it('contains head and body nodes', async () => {

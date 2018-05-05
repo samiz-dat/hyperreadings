@@ -1,16 +1,13 @@
 /* eslint-env mocha */
 
 import { expect } from 'chai'
-import hyperreadings from '../lib/hyperreadings'
-// var utils = require('../lib/utils')
-// var fs = require('fs')
-
+import { ramHyperReadings } from './helpers/general'
 describe('hyperreadings', () => {
   let hr
 
   context('with new hyperreading', () => {
     beforeEach(done => {
-      hr = hyperreadings()
+      hr = ramHyperReadings()
       hr.on('ready', done)
     })
 
