@@ -11,6 +11,14 @@ describe('hyperreadings', () => {
       hr.on('ready', done)
     })
 
+    describe('hr.key()', () => {
+      it('returns the hyperdb key', () => {
+        const key = hr.key()
+        expect(key).to.be.a('string')
+        expect(key).to.have.length(64)
+      })
+    })
+
     describe('initial state', () => {
       it('starts without a root node', async () => {
         var r = await hr.root()
