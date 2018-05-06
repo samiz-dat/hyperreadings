@@ -1,8 +1,9 @@
 var path = require('path')
-// var nodeExternals = require('webpack-node-externals')
+var nodeExternals = require('webpack-node-externals')
 
 module.exports = {
   mode: process.env.NODE_ENV,
+  target: 'node',
   entry: './hyper-readings.es.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -14,8 +15,8 @@ module.exports = {
   },
   externals: [
     'fs',
-    'crypto'
-    // nodeExternals()
+    'crypto',
+    nodeExternals()
   ],
   resolve: {
     extensions: ['.js'],
