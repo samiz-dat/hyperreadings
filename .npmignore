@@ -4,6 +4,9 @@ coverage/
 *.log
 .DS_Store
 
+# ignore locally created hyper-reading dbs
+*.db/
+
 # documentation and test folders not to be packaged with npm
 presentations/
 docs/
