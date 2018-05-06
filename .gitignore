@@ -3,5 +3,6 @@ coverage/
 .nyc_output/
 dist/
 *.log
-
 .DS_Store
+# ignore locally created hyper-reading dbs
+*.db/
