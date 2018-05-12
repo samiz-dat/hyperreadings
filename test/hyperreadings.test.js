@@ -79,7 +79,7 @@ describe('hyperreadings', () => {
       })
     })
 
-    describe('hr.createNode(type)', () => {
+    describe('hr.createNode(type, [properties])', () => {
       it('adds a new blank node to the graph of type', async () => {
         const type = 'http://example.com/namespace/'
         const n = await hr.createNode(type)
@@ -95,12 +95,24 @@ describe('hyperreadings', () => {
             expect(err.message).to.be.string('Cannot create a node without type')
           })
       })
-      it('allows you to set properties when creating', async () => {
+      it('allows you to set properties when creating new node', async () => {
         const type = 'http://example.com/namespace/'
-        const data = {'rdf:value': 23, 'c4o:hasContent': 'very import contents'}
+        const data = { 'rdf:value': 23, 'c4o:hasContent': 'very import contents' }
         const n = await hr.createNode(type, data)
         const nodes = await hr.nodesByType(type)
         expect(nodes).to.have.length(1)
+        expect(await n.get('rdf:value')).to.eql(data['rdf:value'])
+        expect(await n.get('c4o:hasContent')).to.eql(data['c4o:hasContent'])
+      })
+
+      it('allows you to set the nodes name via property.id', async () => {
+        const type = 'http://example.com/namespace/'
+        const data = { id: 'named', 'rdf:value': 23, 'c4o:hasContent': 'very import contents' }
+        const n = await hr.createNode(type, data)
+        const nodes = await hr.nodesByType(type)
+        expect(nodes).to.have.length(1)
+        expect(n.name).to.eql('named')
+        expect(await n.get('id')).to.eql(null)
         expect(await n.get('rdf:value')).to.eql(data['rdf:value'])
         expect(await n.get('c4o:hasContent')).to.eql(data['c4o:hasContent'])
       })
