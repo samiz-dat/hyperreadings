@@ -117,5 +117,31 @@ describe('hyperreadings', () => {
         expect(await n.get('c4o:hasContent')).to.eql(data['c4o:hasContent'])
       })
     })
+    describe('hr.exists(id, [type])', () => {
+      let name
+      beforeEach(async () => {
+        const n = await hr.createNode('hr:test')
+        name = n.name
+      })
+      context('with type', () => {
+        it('returns false if node does not exist', async () => {
+          expect(await hr.exists('hr:not')).to.eql(false)
+        })
+        it('returns true if node exists', async () => {
+          expect(await hr.exists(name)).to.eql(true)
+        })
+      })
+      context('without type', () => {
+        it('returns false if node does not exist', async () => {
+          expect(await hr.exists('hr:not')).to.eql(false)
+        })
+        it('returns false if node names exists but not with type', async () => {
+          expect(await hr.exists(name, 'hr:root')).to.eql(false)
+        })
+        it('returns true if node exists', async () => {
+          expect(await hr.exists(name, 'hr:test')).to.eql(true)
+        })
+      })
+    })
   })
 })
