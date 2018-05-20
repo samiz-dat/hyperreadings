@@ -219,16 +219,16 @@ describe('ContainerNode', () => {
         await c.insertNode(p)
       }
     })
-    it('removes node at the start', async () => {
+    it('removes node starting from the start', async () => {
       await c.removeNodesFrom(0)
       await confirmIteration(c, [])
     })
-    it('removes node in the middle', async () => {
+    it('removes node starting from somewhere in the middle', async () => {
       const after = initialData.slice(0, 3)
       await c.removeNodesFrom(3)
       await confirmIteration(c, after)
     })
-    it('removes node at the end', async () => {
+    it('removes node starting from the end', async () => {
       const after = initialData.slice(0, initialData.length - 1)
       await c.removeNodesFrom(initialData.length - 1)
       await confirmIteration(c, after)
