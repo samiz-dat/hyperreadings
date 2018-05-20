@@ -1,7 +1,6 @@
 /* eslint-env mocha */
 import { expect } from 'chai'
 import { ramHyperReadings } from '../helpers/general'
-import { isNode } from '../../lib/utils'
 
 describe('StandardNode', () => {
   let hr
@@ -172,6 +171,55 @@ describe('StandardNode', () => {
           'frbr:realization': version.name
         })
       })
+    })
+  })
+
+  describe('#update(properties)', () => {
+    context('with a new standard node', () => {
+      const cases = {
+        empty: {},
+        simple: { 'dcterms:title': '"hyper-readings: Readme.md"' },
+        array: { 'frbr:creator': ['"sean"', '"benjamin"', '"others"'] },
+        node: { 'frbr:realization': 'nodename' }
+      }
+      Object.keys(cases).forEach((tc) => {
+        it(`adds object’s key/value pairs to node as predicate -> object (${tc})`, async () => {
+          const work = await hr.createNode('frbr:Work')
+          const input = cases[tc]
+          const output = Object.assign({ 'rdf:type': 'frbr:Work' }, input)
+          await work.update(input)
+          const newProps = await work.properties()
+          expect(newProps).to.deep.eql(output)
+        })
+      })
+    })
+    context('with an existing node', () => {
+      let work = null
+      beforeEach(async () => {
+        work = await hr.createNode('frbr:Work')
+        await work.add('frbr:creator', 'benjamin')
+        await work.add('frbr:creator', 'sean')
+        await work.add('frbr:creator', 'others')
+        await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        const version = await hr.createNode('frbr:Expression')
+        await work.set('frbr:realization', version)
+      })
+      const cases = {
+        empty: {},
+        simple: { 'dcterms:title': '"Another titel"' },
+        array: { 'frbr:creator': ['"different"', '"authors"'] },
+        node: { 'frbr:realization': 'hr://blank' }
+      }
+      Object.keys(cases).forEach((tc) => {
+        it(`adds object’s key/value pairs to node as predicate -> object (${tc})`, async () => {
+          const input = cases[tc]
+          const output = Object.assign({ 'rdf:type': 'frbr:Work' }, input)
+          await work.update(input)
+          const newProps = await work.properties()
+          expect(newProps).to.deep.eql(output)
+        })
+      })
+      it('does not delete properties unnecessarily')
     })
   })
 
