@@ -142,6 +142,39 @@ describe('StandardNode', () => {
     })
   })
 
+  describe('#properties()', () => {
+    context('with new standard node', () => {
+      it('returns object with each (predicate, object) as (key, value) pairs', async () => {
+        let node = await hr.createNode('doco:Sentence')
+        const properties = await node.properties()
+        expect(properties).to.deep.eql({ 'rdf:type': 'doco:Sentence' })
+      })
+      it('returns object with each (predicate, object) as (key, value) pairs', async () => {
+        let node = await hr.createNode('doco:Paragraph')
+        const properties = await node.properties()
+        expect(properties).to.deep.eql({ 'rdf:type': 'doco:Paragraph' })
+      })
+    })
+    context('when node has values set', () => {
+      it('returns object with each (predicate, object) as (key, value) pairs', async () => {
+        const work = await hr.createNode('frbr:Work')
+        await work.add('frbr:creator', 'benjamin')
+        await work.add('frbr:creator', 'sean')
+        await work.add('frbr:creator', 'others')
+        await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        const version = await hr.createNode('frbr:Expression')
+        await work.set('frbr:realization', version)
+        const properties = await work.properties()
+        expect(properties).to.deep.eql({
+          'rdf:type': 'frbr:Work',
+          'dcterms:title': '"hyper-readings: Readme.md"',
+          'frbr:creator': ['"sean"', '"benjamin"', '"others"'],
+          'frbr:realization': version.name
+        })
+      })
+    })
+  })
+
   describe('#children([includeLiterals])', () => {
     context('with default arguments (includeLiterals = false)', () => {
       let node
