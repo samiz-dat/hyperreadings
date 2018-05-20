@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai'
 import { ramHyperReadings } from '../helpers/general'
+import { isNode } from '../../lib/utils'
 
 describe('StandardNode', () => {
   let hr
@@ -141,18 +142,18 @@ describe('StandardNode', () => {
     })
   })
 
-  describe('#children()', () => {
-    let node
-    beforeEach(async () => {
-      node = await hr.createNode('oa:Annotation')
-      const citationA = await hr.createNode('cito:Citation')
-      await citationA.add('rdf:value', 'A')
-      const citationB = await hr.createNode('cito:Citation')
-      await citationB.add('rdf:value', 'B')
-      await node.add('oa:hasTarget', citationA)
-      await node.add('po:contains', citationB)
-    })
-    context('default arguments', () => {
+  describe('#children([includeLiterals])', () => {
+    context('with default arguments (includeLiterals = false)', () => {
+      let node
+      beforeEach(async () => {
+        node = await hr.createNode('oa:Annotation')
+        const citationA = await hr.createNode('cito:Citation')
+        await citationA.add('rdf:value', 'A')
+        const citationB = await hr.createNode('cito:Citation')
+        await citationB.add('rdf:value', 'B')
+        await node.add('oa:hasTarget', citationA)
+        await node.add('po:contains', citationB)
+      })
       it('returns descendant nodes', async () => {
         const children = await node.children()
         expect(children).to.have.length(2)
@@ -168,23 +169,48 @@ describe('StandardNode', () => {
         expect(await children[1].get('rdf:value')).to.eql('B')
       })
     })
+    context('with include literals = true', () => {
+      it('returns literals')
+    })
   })
 
-  describe('#parents()', () => {
-    it('returns all the parents of this node', async () => {
+  describe('#parents([relation])', () => {
+    let citation = null
+    let annotationA = null
+    let annotationB = null
+    let annotationC = null
+    beforeEach(async () => {
       // setup
-      const annotationA = await hr.createNode('oa:Annotation')
-      const annotationB = await hr.createNode('oa:Annotation')
-      const citation = await hr.createNode('cito:Citation')
+      citation = await hr.createNode('cito:Citation')
+      annotationA = await hr.createNode('oa:Annotation')
+      annotationB = await hr.createNode('oa:Annotation')
+      annotationC = await hr.createNode('oa:Annotation')
+      await annotationC.set('oa:hasRef', citation)
       await annotationA.set('oa:hasTarget', citation)
       await annotationA.set('oa:hasBody', 'annotation 1')
       await annotationB.set('oa:hasTarget', citation)
       await annotationB.set('oa:hasBody', 'annotation 2')
-      // parents
-      const parents = await citation.parents()
-      expect(parents).to.have.length(2)
-      expect(parents[0].name).to.eql(annotationB.name)
-      expect(parents[1].name).to.eql(annotationA.name)
+    })
+    context('without relation set', () => {
+      it('returns all the parents of this node', async () => {
+        const parents = await citation.parents()
+        expect(parents).to.have.length(3)
+        const names = parents.map(p => p.name)
+        expect(names).to.have.all.members([annotationC.name, annotationB.name, annotationA.name])
+      })
+    })
+    context('with relation set', () => {
+      it('returns only parents with specific relation', async () => {
+        const parents = await citation.parents('oa:hasTarget')
+        expect(parents).to.have.length(2)
+        expect(parents[1].name).to.eql(annotationB.name)
+        expect(parents[0].name).to.eql(annotationA.name)
+      })
+      it('returns only parents with specific relation', async () => {
+        const parents = await citation.parents('oa:hasRef')
+        expect(parents).to.have.length(1)
+        expect(parents[0].name).to.eql(annotationC.name)
+      })
     })
   })
 
@@ -321,7 +347,7 @@ describe('StandardNode', () => {
         await intro.insertNode(p4)
         await p4.set('rdf:value', 'p4')
       })
-      it('removes node from parents and destroys it children recursively (simple)', async () => {
+      it('removes node from parents and destroys its children recursively (simple)', async () => {
         await p3.destroy()
         expect(await p3.parents()).to.have.length(0)
         expect(await p3.children(true)).to.have.length(0)
@@ -333,7 +359,7 @@ describe('StandardNode', () => {
         })
         expect(expected).to.have.length(0)
       })
-      it('removes node from parents and destroys it children recursively (simple again)', async () => {
+      it('removes node from parents and destroys its children recursively (simple again)', async () => {
         await title.destroy()
         expect(await title.parents()).to.have.length(0)
         expect(await title.children(true)).to.have.length(0)
@@ -345,10 +371,12 @@ describe('StandardNode', () => {
         })
         expect(expected).to.have.length(0)
       })
-      it('removes node from parents and destroys it children recursively (complex)', async () => {
+      it('removes node from parents and destroys its children recursively (complex)', async () => {
         await intro.destroy()
-        expect(await intro.parents()).to.have.length(0)
+        // expect(await intro.parents()).to.have.length(0)
+        // console.log(await intro.children(true))
         expect(await intro.children(true)).to.have.length(0)
+        // console.log(await intro.children(true))
         expect(await intro.get('rdf:type')).to.have.equal(null)
       })
     })
