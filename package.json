@@ -35,7 +35,7 @@
   "homepage": "https://github.com/sdockray/hyperreadings#readme",
   "dependencies": {
     "hyper-graph-db": "^0.3.2",
-    "marked": "^0.3.15",
+    "marked": "^0.4.0",
     "nanoiterator": "^1.1.0",
     "parse5": "^4.0.0"
   },
