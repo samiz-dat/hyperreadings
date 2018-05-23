@@ -146,12 +146,12 @@ describe('StandardNode', () => {
       it('returns object with each (predicate, object) as (key, value) pairs', async () => {
         let node = await hr.createNode('doco:Sentence')
         const properties = await node.properties()
-        expect(properties).to.deep.eql({ 'rdf:type': 'doco:Sentence' })
+        expect(properties).to.deep.eql({ 'rdf:type': { name: 'doco:Sentence' } })
       })
       it('returns object with each (predicate, object) as (key, value) pairs', async () => {
         let node = await hr.createNode('doco:Paragraph')
         const properties = await node.properties()
-        expect(properties).to.deep.eql({ 'rdf:type': 'doco:Paragraph' })
+        expect(properties).to.deep.eql({ 'rdf:type': { name: 'doco:Paragraph' } })
       })
     })
     context('when node has values set', () => {
@@ -165,10 +165,10 @@ describe('StandardNode', () => {
         await work.set('frbr:realization', version)
         const properties = await work.properties()
         expect(properties).to.deep.eql({
-          'rdf:type': 'frbr:Work',
-          'dcterms:title': '"hyper-readings: Readme.md"',
-          'frbr:creator': ['"sean"', '"benjamin"', '"others"'],
-          'frbr:realization': version.name
+          'rdf:type': { name: 'frbr:Work' },
+          'dcterms:title': 'hyper-readings: Readme.md',
+          'frbr:creator': ['sean', 'benjamin', 'others'],
+          'frbr:realization': { name: version.name }
         })
       })
     })
@@ -176,18 +176,38 @@ describe('StandardNode', () => {
 
   describe('#update(properties)', () => {
     context('with a new standard node', () => {
-      const cases = {
-        empty: {},
-        simple: { 'dcterms:title': '"hyper-readings: Readme.md"' },
-        array: { 'frbr:creator': ['"sean"', '"benjamin"', '"others"'] },
-        node: { 'frbr:realization': 'nodename' }
-      }
-      Object.keys(cases).forEach((tc) => {
-        it(`adds object’s key/value pairs to node as predicate -> object (${tc})`, async () => {
+      const cases = [
+        {
+          name: 'empty',
+          input: {},
+          output: {}
+        },
+        {
+          name: 'simple',
+          input: { 'dcterms:title': 'hyper-readings: Readme.md' },
+          output: { 'dcterms:title': 'hyper-readings: Readme.md' }
+        },
+        {
+          name: 'array',
+          input: { 'frbr:creator': ['sean', 'benjamin', 'others'] },
+          output: { 'frbr:creator': ['sean', 'benjamin', 'others'] }
+        },
+        {
+          name: 'node',
+          input: { 'frbr:realization': { name: 'hr://node' } },
+          output: { 'frbr:realization': { name: 'hr://node' } }
+        },
+        {
+          name: 'literal',
+          input: { 'rdf:value': 12 },
+          output: { 'rdf:value': 12 }
+        }
+      ]
+      cases.forEach((tc) => {
+        it(`adds object’s key/value pairs to node as predicate -> object (${tc.name})`, async () => {
           const work = await hr.createNode('frbr:Work')
-          const input = cases[tc]
-          const output = Object.assign({ 'rdf:type': 'frbr:Work' }, input)
-          await work.update(input)
+          const output = Object.assign({ 'rdf:type': { name: 'frbr:Work' } }, tc.output)
+          await work.update(tc.input)
           const newProps = await work.properties()
           expect(newProps).to.deep.eql(output)
         })
@@ -195,26 +215,47 @@ describe('StandardNode', () => {
     })
     context('with an existing node', () => {
       let work = null
+      const cases = [
+        {
+          name: 'empty',
+          input: {},
+          output: {}
+        },
+        {
+          name: 'simple',
+          input: { 'dcterms:title': 'Another titel' },
+          output: { 'dcterms:title': 'Another titel' }
+        },
+        {
+          name: 'array',
+          input: { 'frbr:creator': ['different', 'authors'] },
+          output: { 'frbr:creator': ['different', 'authors'] }
+        },
+        {
+          name: 'node',
+          input: { 'frbr:realization': { name: 'hr://blank' } },
+          output: { 'frbr:realization': { name: 'hr://blank' } }
+        },
+        {
+          name: 'literal',
+          input: { 'rdf:value': 44 },
+          output: { 'rdf:value': 44 }
+        }
+      ]
       beforeEach(async () => {
         work = await hr.createNode('frbr:Work')
         await work.add('frbr:creator', 'benjamin')
         await work.add('frbr:creator', 'sean')
         await work.add('frbr:creator', 'others')
         await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        await work.set('rdf:value', 12)
         const version = await hr.createNode('frbr:Expression')
         await work.set('frbr:realization', version)
       })
-      const cases = {
-        empty: {},
-        simple: { 'dcterms:title': '"Another titel"' },
-        array: { 'frbr:creator': ['"different"', '"authors"'] },
-        node: { 'frbr:realization': 'hr://blank' }
-      }
-      Object.keys(cases).forEach((tc) => {
-        it(`adds object’s key/value pairs to node as predicate -> object (${tc})`, async () => {
-          const input = cases[tc]
-          const output = Object.assign({ 'rdf:type': 'frbr:Work' }, input)
-          await work.update(input)
+      cases.forEach((tc) => {
+        it(`adds object’s key/value pairs to node as predicate -> object (${tc.name})`, async () => {
+          const output = Object.assign({ 'rdf:type': { name: 'frbr:Work' } }, tc.output)
+          await work.update(tc.input)
           const newProps = await work.properties()
           expect(newProps).to.deep.eql(output)
         })

@@ -1,8 +1,6 @@
 /* eslint-env mocha */
 import { expect } from 'chai'
 import { ramHyperReadings } from '../helpers/general'
-// var utils = require('../lib/utils')
-// var fs = require('fs')
 
 async function confirmIteration (container, expected) {
   let count = 0
