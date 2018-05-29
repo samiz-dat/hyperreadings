@@ -278,17 +278,16 @@ describe('StandardNode', () => {
       })
       it('returns descendant nodes', async () => {
         const children = await node.children()
-        expect(children).to.have.length(2)
-        expect(await children[0].get('rdf:value')).to.eql('A')
-        expect(await children[1].get('rdf:value')).to.eql('B')
+        const values = await Promise.all(children.map(c => c.get('rdf:value')))
+        expect(values).to.have.all.members(['A', 'B'])
       })
       it('returns does not return literal values', async () => {
         await node.add('ao:hasBody', 'somedata')
         await node.add('rdf:value', 1)
         const children = await node.children()
         expect(children).to.have.length(2)
-        expect(await children[0].get('rdf:value')).to.eql('A')
-        expect(await children[1].get('rdf:value')).to.eql('B')
+        const values = await Promise.all(children.map(c => c.get('rdf:value')))
+        expect(values).to.have.all.members(['A', 'B'])
       })
     })
     context('with include literals = true', () => {
@@ -325,8 +324,8 @@ describe('StandardNode', () => {
       it('returns only parents with specific relation', async () => {
         const parents = await citation.parents('oa:hasTarget')
         expect(parents).to.have.length(2)
-        expect(parents[1].name).to.eql(annotationB.name)
-        expect(parents[0].name).to.eql(annotationA.name)
+        const names = await parents.map(p => p.name)
+        expect(names).to.have.all.members([annotationB.name, annotationA.name])
       })
       it('returns only parents with specific relation', async () => {
         const parents = await citation.parents('oa:hasRef')
