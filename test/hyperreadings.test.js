@@ -19,6 +19,33 @@ describe('hyperreadings', () => {
       })
     })
 
+    describe('hr.setTitle(title)', () => {
+      it('throws error if title is empty', () => {
+        expect(() => hr.setTitle('')).to.throw(/Title must be a string/)
+      })
+      it('throws error if title is not a string', () => {
+        expect(() => hr.setTitle(222)).to.throw(/Title must be a string/)
+      })
+      it('sets the title of the reading list', async () => {
+        await hr.setTitle('hello')
+        const title = await hr.title()
+        expect(title).to.eql('hello')
+      })
+    })
+
+    describe('hr.title()', () => {
+      it('gets the title of the reading list', async () => {
+        await hr.setTitle('radical librarians')
+        const title = await hr.title()
+        expect(title).to.eql('radical librarians')
+      })
+
+      it('returns untitled if title has not been set', async () => {
+        const title = await hr.title()
+        expect(title).to.eql('untitled')
+      })
+    })
+
     describe('initial state', () => {
       it('starts without a root node', async () => {
         var r = await hr.root()
