@@ -37,7 +37,7 @@
     "hyper-graph-db": "^0.3.4",
     "marked": "^0.3.15",
     "nanoiterator": "^1.1.0",
-    "parse5": "^4.0.0",
+    "parse5": "^5.1.0",
     "uuid": "^3.2.1"
   },
   "devDependencies": {
