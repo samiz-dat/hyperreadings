@@ -205,6 +205,74 @@ describe('InstanceNode', () => {
     })
   })
 
+  describe('.getTitle()', async () => {
+    context('when instance has a title', () => {
+      it('returns a title', async () => {
+        await instance.setTitle('Philosophy of Poverty')
+        const title = await instance.getTitle()
+        expect(title).to.eql('Philosophy of Poverty')
+      })
+    })
+    context('when instance has multiple types of titles', () => {
+      it('returns only the Title type', async () => {
+        await instance.setAbbreviatedTitle('We, the anarchists')
+        await instance.setTitle('We, the anarchists : a study of the Iberian Anarchist Federation (FAI), 1927-1937')
+        const title = await instance.getTitle()
+        expect(title).to.eql('We, the anarchists : a study of the Iberian Anarchist Federation (FAI), 1927-1937')
+      })
+    })
+    context('when instance has no title', () => {
+      it('returns null', async () => {
+        const title = await instance.getTitle()
+        expect(title).to.eql(null)
+      })
+    })
+    context('when instance has only abbreviated title', () => {
+      it('returns null', async () => {
+        await instance.setAbbreviatedTitle('We, the anarchists')
+        const title = await instance.getTitle()
+        expect(title).to.eql(null)
+      })
+    })
+  })
+
+  describe('.removeTitle()', async () => {
+    context('when instance has a title', () => {
+      it('it removes the title', async () => {
+        await instance.setTitle('Philosophy of Poverty')
+        await instance.removeTitle()
+        const title = await instance.getTitle()
+        expect(title).to.eql(null)
+      })
+    })
+    context('when instance has multiple types of titles', () => {
+      it('removes only the Title type', async () => {
+        await instance.setAbbreviatedTitle('We, the anarchists')
+        await instance.setTitle('We, the anarchists : a study of the Iberian Anarchist Federation (FAI), 1927-1937')
+        await instance.removeTitle()
+        const title = await instance.getTitle()
+        const abbreviatedTitle = await instance.getAbbreviatedTitle()
+        expect(title).to.eql(null)
+        expect(abbreviatedTitle).to.eql('We, the anarchists')
+      })
+    })
+    context('when instance has no title', () => {
+      it('does not error', async () => {
+        await instance.removeTitle()
+      })
+    })
+    context('when instance has only abbreviated title', () => {
+      it('returns null', async () => {
+        await instance.setAbbreviatedTitle('We, the anarchists')
+        await instance.removeTitle()
+        const title = await instance.getTitle()
+        const abbreviatedTitle = await instance.getAbbreviatedTitle()
+        expect(title).to.eql(null)
+        expect(abbreviatedTitle).to.eql('We, the anarchists')
+      })
+    })
+  })
+
   describe('.setAbreviatedTitle()', async () => {
     context('when instance already has an abbreviated title', () => {
       it('replaces the abbreviated title', async () => {
@@ -249,6 +317,160 @@ describe('InstanceNode', () => {
         ])
         expect(titles).to.have.length(1)
         expect(titles[0]).to.deep.include({ title: '"Gender Trouble"', type: 'bf:AbbreviatedTitle' })
+      })
+    })
+  })
+
+  describe('.getAbbreviatedTitle()', async () => {
+    context('when instance has am abbreviated title', () => {
+      it('returns the abbreviated', async () => {
+        await instance.setAbbreviatedTitle('Philosophy of Poverty')
+        const title = await instance.getAbbreviatedTitle()
+        expect(title).to.eql('Philosophy of Poverty')
+      })
+    })
+    context('when instance has multiple types of titles', () => {
+      it('returns only the AbbreviatedTitle type', async () => {
+        await instance.setAbbreviatedTitle('We, the anarchists')
+        await instance.setTitle('We, the anarchists : a study of the Iberian Anarchist Federation (FAI), 1927-1937')
+        const title = await instance.getAbbreviatedTitle()
+        expect(title).to.eql('We, the anarchists')
+      })
+    })
+    context('when instance has no abbreviated title', () => {
+      it('returns null', async () => {
+        const title = await instance.getAbbreviatedTitle()
+        expect(title).to.eql(null)
+      })
+    })
+    context('when instance has title but no abbreviated title', () => {
+      it('returns null', async () => {
+        await instance.setTitle('We, the anarchists : a study of the Iberian Anarchist Federation (FAI), 1927-1937')
+        const title = await instance.getAbbreviatedTitle()
+        expect(title).to.eql(null)
+      })
+    })
+  })
+
+  describe('.removeAbbreviatedTitle()', async () => {
+    context('when instance has an abbreviated title', () => {
+      it('it removes the abbreviated title', async () => {
+        await instance.setTitle('Philosophy of Poverty')
+        await instance.removeTitle()
+        const title = await instance.getTitle()
+        expect(title).to.eql(null)
+      })
+    })
+    context('when instance has multiple types of titles', () => {
+      it('removes only the AbbreviatedTitle type', async () => {
+        await instance.setAbbreviatedTitle('We, the anarchists')
+        await instance.setTitle('We, the anarchists : a study of the Iberian Anarchist Federation (FAI), 1927-1937')
+        await instance.removeAbbreviatedTitle()
+        const title = await instance.getTitle()
+        const abbreviatedTitle = await instance.getAbbreviatedTitle()
+        expect(title).to.eql('We, the anarchists : a study of the Iberian Anarchist Federation (FAI), 1927-1937')
+        expect(abbreviatedTitle).to.eql(null)
+      })
+    })
+    context('when instance has no title', () => {
+      it('does not error', async () => {
+        await instance.removeAbbreviatedTitle()
+      })
+    })
+    context('when instance has only title type', () => {
+      it('returns null', async () => {
+        await instance.setTitle('We, the anarchists')
+        await instance.removeAbbreviatedTitle()
+        const abbreviatedTitle = await instance.getAbbreviatedTitle()
+        const title = await instance.getTitle()
+        expect(abbreviatedTitle).to.eql(null)
+        expect(title).to.eql('We, the anarchists')
+      })
+    })
+  })
+
+  describe('.addContribution(agent, role)', () => {
+    context('when agent is a string', () => {
+      it('attempts to create a Person from the string')
+    })
+    context('when agent and valid role are provided', () => {
+      it('adds a contributor to with a role to the Instance')
+    })
+    context('when role is not a valid marc relation', () => {
+      it('returns a rejected promise')
+    })
+    context('when role is not provided', () => {
+      it('adds a contributor to with role author')
+    })
+    context('when there is already a contributor', () => {
+      it('adds another')
+    })
+  })
+
+  describe('.contributions(role)', () => {
+    context('when role is provided', () => {
+      it('returns a list of all contributions with that role')
+    })
+    context('when role is not provided', () => {
+      it('returns all contributions')
+      context('when no contributions', () => {
+        it('returns an empty array')
+      })
+    })
+  })
+
+  describe('.setPublicationDate(date)', () => {
+    context('when bf:Publication does not yet exist under bf:provisionActivity', () => {
+      it('creates a Publication under bf:provisionActivity with date')
+    })
+    context('when bf:Publication already exists under bf:provisionActivity', () => {
+      context('when publication date already exists', () => {
+        it('overwrites the old date with the new')
+      })
+      context('when publication date does not exist', () => {
+        it('adds the publication date to the Publication')
+      })
+    })
+  })
+
+  describe('.getPublicationDate(date)', () => {
+    context('when bf:Publication does not yet exist under bf:provisionActivity', () => {
+      it('returns null')
+    })
+    context('when bf:Publication exist under bf:provisionActivity', () => {
+      context('when bf:Publication has date', () => {
+        it('returns the date')
+      })
+      context('when bf:Publication does not have date', () => {
+        it('returns null')
+      })
+    })
+  })
+
+  describe('.setPublicationPlace(place)', () => {
+    context('when bf:Publication does not yet exist under bf:provisionActivity', () => {
+      it('creates a Publication under bf:provisionActivity with place')
+    })
+    context('when bf:Publication already exists under bf:provisionActivity', () => {
+      context('when publication place already exists', () => {
+        it('overwrites the old place with the new')
+      })
+      context('when publication place does not exist', () => {
+        it('adds the publication place to the Publication')
+      })
+    })
+  })
+
+  describe('.getPublicationPlace(place)', () => {
+    context('when bf:Publication does not yet exist under bf:provisionActivity', () => {
+      it('returns null')
+    })
+    context('when bf:Publication exist under bf:provisionActivity', () => {
+      context('when bf:Publication has place', () => {
+        it('returns the place')
+      })
+      context('when bf:Publication does not have place', () => {
+        it('returns null')
       })
     })
   })
