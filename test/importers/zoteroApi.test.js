@@ -189,6 +189,18 @@ describe.only('importing from zotero api', () => {
         { type: 'bf:Isnb', value: '978-1-84638-084-6' }
       ])
     })
+    it('sets place, date and publisher fields as provisionActivity on the instance', async () => {
+      const instance = await hr.nodeByType('bf:Instance')
+      const publications = await instance.publications()
+      expect(publications).to.have.length(1)
+      expect(publications[0].date).to.eql('2012')
+      expect(await publications[0].agent.get('rdfs:label')).to.eql('Afterall')
+      expect(await publications[0].place.get('rdfs:label')).to.eql('London')
+      // expect(publications).to.deep.include.members([
+      //   { type: 'bf:Isnb', value: '978-1-84638-083-9' },
+      //   { type: 'bf:Isnb', value: '978-1-84638-084-6' }
+      // ])
+    })
     it('creates an item', async () => {
       const item = await hr.nodeByType('bf:Item')
       expect(item).to.not.eql(null)
