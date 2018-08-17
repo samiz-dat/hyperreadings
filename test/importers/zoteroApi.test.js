@@ -139,20 +139,24 @@ describe.only('importing from zotero api', () => {
       hr = ramHyperReadings()
       return hr.importZoteroReference(testData.book)
     })
+
     it('creates a new bf:Instance', async () => {
       const instance = await hr.nodeByType('bf:Instance')
       expect(instance).to.not.eql(null)
     })
+
     it('sets title on the instance', async () => {
       const instance = await hr.nodeByType('bf:Instance')
       const title = await instance.getTitle()
       expect(title).to.eql('Martha Rosler: The Bowery in two inadequate descriptive systems')
     })
+
     it('sets abbreviated title on the instance', async () => {
       const instance = await hr.nodeByType('bf:Instance')
       const abbreviatedTitle = await instance.getAbbreviatedTitle()
       expect(abbreviatedTitle).to.eql('Martha Rosler')
     })
+
     it('adds creators as contributions to the instance', async () => {
       const instance = await hr.nodeByType('bf:Instance')
       const contributions = await instance.contributions()
@@ -164,6 +168,7 @@ describe.only('importing from zotero api', () => {
         role: 'marc:aut'
       }])
     })
+
     it('sets associated tags as subjects on the instance', async () => {
       const instance = await hr.nodeByType('bf:Instance')
       const subjects = await instance.subjects()
@@ -176,11 +181,13 @@ describe.only('importing from zotero api', () => {
         'United States'
       ])
     })
+
     it('sets abstractNote to summary on the instance', async () => {
       const instance = await hr.nodeByType('bf:Instance')
       const summary = await instance.getSummary()
       expect(summary).to.eql('a note describing the work')
     })
+
     it('sets ISBN field as identifiers on the instance', async () => {
       const instance = await hr.nodeByType('bf:Instance')
       const identifiers = await instance.identifiers()
@@ -189,6 +196,7 @@ describe.only('importing from zotero api', () => {
         { type: 'bf:Isnb', value: '978-1-84638-084-6' }
       ])
     })
+
     it('sets place, date and publisher fields as provisionActivity on the instance', async () => {
       const instance = await hr.nodeByType('bf:Instance')
       const publications = await instance.publications()
@@ -196,15 +204,13 @@ describe.only('importing from zotero api', () => {
       expect(publications[0].date).to.eql('2012')
       expect(await publications[0].agent.get('rdfs:label')).to.eql('Afterall')
       expect(await publications[0].place.get('rdfs:label')).to.eql('London')
-      // expect(publications).to.deep.include.members([
-      //   { type: 'bf:Isnb', value: '978-1-84638-083-9' },
-      //   { type: 'bf:Isnb', value: '978-1-84638-084-6' }
-      // ])
     })
+
     it('creates an item', async () => {
       const item = await hr.nodeByType('bf:Item')
       expect(item).to.not.eql(null)
     })
+
     it('sets relations between the instance and item', async () => {
       const instance = await hr.nodeByType('bf:Instance')
       const item = await hr.nodeByType('bf:Item')
@@ -213,19 +219,110 @@ describe.only('importing from zotero api', () => {
       expect(itemsInstance).to.eql(instance)
       expect(instancesItems[0]).to.eql(item)
     })
+
     it('sets url as electronicLocator on item', async () => {
       const item = await hr.nodeByType('bf:Item')
       const locator = await item.getElectronicLocator()
       expect(locator).to.eql('a url')
     })
+
     it('sets callNumber as shelfMark on item', async () => {
       const item = await hr.nodeByType('bf:Item')
       const shelfMark = await item.getShelfMark()
       expect(shelfMark).to.eql('N6537.R582 A62 2012')
     })
   })
+
   context('when item type is a chapter', () => {
-    it('adds a new reference as bibframe elements')
+    before(async () => {
+      hr = ramHyperReadings()
+      return hr.importZoteroReference(testData.section)
+    })
+
+    it('creates a new bf:Instance', async () => {
+      const instance = await hr.nodeByType('bf:Instance')
+      expect(instance).to.not.eql(null)
+    })
+
+    it('sets title on the instance', async () => {
+      const instance = await hr.nodeByType('bf:Instance')
+      const title = await instance.getTitle()
+      expect(title).to.eql('POETRY')
+    })
+
+    it('sets abbreviated title on the instance', async () => {
+      const instance = await hr.nodeByType('bf:Instance')
+      const abbreviatedTitle = await instance.getAbbreviatedTitle()
+      expect(abbreviatedTitle).to.eql(null)
+    })
+
+    it('adds creators as contributions to the instance', async () => {
+      const instance = await hr.nodeByType('bf:Instance')
+      const contributions = await instance.contributions()
+      expect(contributions).to.have.length(1)
+      expect(contributions).to.deep.eql([{
+        firstName: 'Joanne',
+        lastName: 'Shattock',
+        name: 'Joanne Shattock',
+        role: 'marc:aut'
+      }])
+    })
+
+    it('sets associated tags as subjects on the instance', async () => {
+      const instance = await hr.nodeByType('bf:Instance')
+      const subjects = await instance.subjects()
+      expect(subjects).to.have.length(0)
+    })
+
+    it('sets abstractNote to summary on the instance', async () => {
+      const instance = await hr.nodeByType('bf:Instance')
+      const summary = await instance.getSummary()
+      expect(summary).to.eql('a note describing the work')
+    })
+
+    it('adds ISBN field and DOI from extra field as an identifier on the instance', async () => {
+      const instance = await hr.nodeByType('bf:Instance')
+      const identifiers = await instance.identifiers()
+      expect(identifiers).to.deep.include.members([
+        { type: 'bf:Isnb', value: '978-0-511-51868-3' },
+        { type: 'bf:Doi', value: '10.1017/CBO9780511518683.005' }
+      ])
+    })
+
+    it('sets place, date and publisher fields as provisionActivity on the instance', async () => {
+      const instance = await hr.nodeByType('bf:Instance')
+      const publications = await instance.publications()
+      expect(publications).to.have.length(1)
+      expect(publications[0].date).to.eql('2000')
+      expect(await publications[0].agent.get('rdfs:label')).to.eql('Cambridge University Press')
+      expect(await publications[0].place.get('rdfs:label')).to.eql('Cambridge')
+    })
+
+    it('creates an item', async () => {
+      const item = await hr.nodeByType('bf:Item')
+      expect(item).to.not.eql(null)
+    })
+
+    it('sets relations between the instance and item', async () => {
+      const instance = await hr.nodeByType('bf:Instance')
+      const item = await hr.nodeByType('bf:Item')
+      const itemsInstance = await item.itemOf()
+      const instancesItems = await instance.items()
+      expect(itemsInstance).to.eql(instance)
+      expect(instancesItems[0]).to.eql(item)
+    })
+
+    it('sets url as electronicLocator on item', async () => {
+      const item = await hr.nodeByType('bf:Item')
+      const locator = await item.getElectronicLocator()
+      expect(locator).to.eql('http://www.crossref.org/deleted_DOI.html')
+    })
+
+    it('sets callNumber as shelfMark on item', async () => {
+      const item = await hr.nodeByType('bf:Item')
+      const shelfMark = await item.getShelfMark()
+      expect(shelfMark).to.eql(null)
+    })
   })
   context('when item type is a journalArticle', () => {
     it('adds a new reference as bibframe elements')
