@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import { ramHyperReadings } from '../helpers/general'
 import { spo } from '../../lib/utils'
 
-describe('InstanceNode', () => {
+xdescribe('InstanceNode', () => {
   let hr
   let instance
   beforeEach(done => {

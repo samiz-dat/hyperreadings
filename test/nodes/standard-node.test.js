@@ -16,7 +16,7 @@ function auditHistory (hr) {
   })
 }
 
-describe.only('StandardNode', () => {
+describe('StandardNode', () => {
   let hr
   beforeEach(done => {
     hr = ramHyperReadings()
