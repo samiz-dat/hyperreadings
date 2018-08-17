@@ -181,6 +181,14 @@ describe.only('importing from zotero api', () => {
       const summary = await instance.getSummary()
       expect(summary).to.eql('a note describing the work')
     })
+    it('sets ISBN field as identifiers on the instance', async () => {
+      const instance = await hr.nodeByType('bf:Instance')
+      const identifiers = await instance.identifiers()
+      expect(identifiers).to.deep.include.members([
+        { type: 'bf:Isnb', value: '978-1-84638-083-9' },
+        { type: 'bf:Isnb', value: '978-1-84638-084-6' }
+      ])
+    })
     it('creates an item', async () => {
       const item = await hr.nodeByType('bf:Item')
       expect(item).to.not.eql(null)
@@ -188,8 +196,10 @@ describe.only('importing from zotero api', () => {
     it('sets relations between the instance and item', async () => {
       const instance = await hr.nodeByType('bf:Instance')
       const item = await hr.nodeByType('bf:Item')
-      expect(await item.itemOf()).to.eql(instance)
-      expect(await instance.instanceOf()).to.eql(item)
+      const itemsInstance = await item.itemOf()
+      const instancesItems = await instance.items()
+      expect(itemsInstance).to.eql(instance)
+      expect(instancesItems[0]).to.eql(item)
     })
     it('sets url as electronicLocator on item', async () => {
       const item = await hr.nodeByType('bf:Item')
