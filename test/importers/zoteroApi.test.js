@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import { expect } from 'chai'
-import { ramHyperReadings } from '../helpers/general'
+import { ramHyperReadings, collect } from '../helpers/general'
 
 const testData = {
   book: {
@@ -134,32 +134,32 @@ const testData = {
 
 describe.only('importing from zotero api', () => {
   let hr
+  let reference
   context('when item type is a book', () => {
     before(async () => {
       hr = ramHyperReadings()
-      return hr.importZoteroReference(testData.book)
+      await hr.importZoteroReference(testData.book)
+      const collection = await hr.getCollection('default')
+      const references = await collect(collection.stream())
+      if (references.length) reference = references[0]
     })
 
-    it('creates a new bf:Instance', async () => {
-      const instance = await hr.nodeByType('bf:Instance')
-      expect(instance).to.not.eql(null)
+    it('creates a new bf:Instance as a reference', async () => {
+      expect(reference.type).to.not.eql(null)
     })
 
     it('sets title on the instance', async () => {
-      const instance = await hr.nodeByType('bf:Instance')
-      const title = await instance.getTitle()
+      const title = await reference.getTitle()
       expect(title).to.eql('Martha Rosler: The Bowery in two inadequate descriptive systems')
     })
 
     it('sets abbreviated title on the instance', async () => {
-      const instance = await hr.nodeByType('bf:Instance')
-      const abbreviatedTitle = await instance.getAbbreviatedTitle()
+      const abbreviatedTitle = await reference.getAbbreviatedTitle()
       expect(abbreviatedTitle).to.eql('Martha Rosler')
     })
 
     it('adds creators as contributions to the instance', async () => {
-      const instance = await hr.nodeByType('bf:Instance')
-      const contributions = await instance.contributions()
+      const contributions = await reference.contributions()
       expect(contributions).to.have.length(1)
       expect(contributions).to.deep.eql([{
         name: 'Steve Edwards',
@@ -170,8 +170,7 @@ describe.only('importing from zotero api', () => {
     })
 
     it('sets associated tags as subjects on the instance', async () => {
-      const instance = await hr.nodeByType('bf:Instance')
-      const subjects = await instance.subjects()
+      const subjects = await reference.subjects()
       expect(subjects).to.have.length(5)
       expect(subjects).to.include.members([
         'Bowery in two inadequate descriptive systems',
@@ -183,14 +182,12 @@ describe.only('importing from zotero api', () => {
     })
 
     it('sets abstractNote to summary on the instance', async () => {
-      const instance = await hr.nodeByType('bf:Instance')
-      const summary = await instance.getSummary()
+      const summary = await reference.getSummary()
       expect(summary).to.eql('a note describing the work')
     })
 
     it('sets ISBN field as identifiers on the instance', async () => {
-      const instance = await hr.nodeByType('bf:Instance')
-      const identifiers = await instance.identifiers()
+      const identifiers = await reference.identifiers()
       expect(identifiers).to.deep.include.members([
         { type: 'bf:Isnb', value: '978-1-84638-083-9' },
         { type: 'bf:Isnb', value: '978-1-84638-084-6' }
@@ -198,8 +195,7 @@ describe.only('importing from zotero api', () => {
     })
 
     it('sets place, date and publisher fields as provisionActivity on the instance', async () => {
-      const instance = await hr.nodeByType('bf:Instance')
-      const publications = await instance.publications()
+      const publications = await reference.publications()
       expect(publications).to.have.length(1)
       expect(publications[0].date).to.eql('2012')
       expect(await publications[0].agent.get('rdfs:label')).to.eql('Afterall')
@@ -212,12 +208,11 @@ describe.only('importing from zotero api', () => {
     })
 
     it('sets relations between the instance and item', async () => {
-      const instance = await hr.nodeByType('bf:Instance')
       const item = await hr.nodeByType('bf:Item')
       const itemsInstance = await item.itemOf()
-      const instancesItems = await instance.items()
-      expect(itemsInstance).to.eql(instance)
-      expect(instancesItems[0]).to.eql(item)
+      const instancesItems = await reference.items()
+      expect(itemsInstance.name).to.eql(reference.name)
+      expect(instancesItems[0].name).to.eql(item.name)
     })
 
     it('sets url as electronicLocator on item', async () => {
@@ -230,6 +225,17 @@ describe.only('importing from zotero api', () => {
       const item = await hr.nodeByType('bf:Item')
       const shelfMark = await item.getShelfMark()
       expect(shelfMark).to.eql('N6537.R582 A62 2012')
+    })
+
+    it('creates a new series when series fields have values', async () => {
+      const series = await reference.hasSeries()
+      const seriesTitle = await series.getTitle()
+      expect(seriesTitle).to.eql('One work')
+    })
+    it('creates series with reciprocal relationship', async () => {
+      const series = await reference.hasSeries()
+      const seriesParts = await series.seriesOf()
+      expect(seriesParts[0].name).to.eql(reference.name)
     })
   })
 
@@ -308,8 +314,8 @@ describe.only('importing from zotero api', () => {
       const item = await hr.nodeByType('bf:Item')
       const itemsInstance = await item.itemOf()
       const instancesItems = await instance.items()
-      expect(itemsInstance).to.eql(instance)
-      expect(instancesItems[0]).to.eql(item)
+      expect(itemsInstance.name).to.eql(instance.name)
+      expect(instancesItems[0].name).to.eql(item.name)
     })
 
     it('sets url as electronicLocator on item', async () => {
