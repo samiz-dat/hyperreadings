@@ -232,11 +232,25 @@ describe.only('importing from zotero api', () => {
       const seriesTitle = await series.getTitle()
       expect(seriesTitle).to.eql('One work')
     })
+
     it('creates series with reciprocal relationship', async () => {
       const series = await reference.hasSeries()
       const seriesParts = await series.seriesOf()
       expect(seriesParts[0].name).to.eql(reference.name)
     })
+
+    it('needs to address seriesNumber')
+    it('needs to address volume')
+    it('needs to address numberOfVolumes')
+    it('needs to address edition')
+    it('needs to address pages')
+    it('needs to address language')
+    it('needs to address accessDate')
+    it('needs to address archive')
+    it('needs to address archiveLocation')
+    it('needs to address libraryCatalog')
+    it('needs to address rights')
+    it('needs to address extra')
   })
 
   context('when item type is a chapter', () => {
