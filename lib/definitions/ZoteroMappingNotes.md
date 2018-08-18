@@ -261,7 +261,7 @@ Where `Agent` is the archive which holds this item
 This is only within the types: `artwork` `audioRecording` `book` `bookSection` `computerProgram` `conferencePaper` `dictionaryEntry` `document` `encyclopediaArticle` `film` `interview` `journalArticle` `letter` `magazineArticle` `manuscript` `map` `newspaperArticle` `radioBroadcast` `report` `thesis` `tvBroadcast` `videoRecording`
 
 
-`Item -> heldBy -> [ Agent ]`
+`Instance -> source -> [ Source ]`
 
 #### `place`
 
