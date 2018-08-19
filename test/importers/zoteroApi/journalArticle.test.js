@@ -42,7 +42,7 @@ const data = {
   tags: []
 }
 
-describe.only('importing a journal article from zotero api', () => {
+describe('importing a journal article from zotero api', () => {
   let hr
   let reference
   before(async () => {

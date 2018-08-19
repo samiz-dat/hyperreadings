@@ -37,7 +37,7 @@ const data = {
   tags: []
 }
 
-describe.only('importing a book section from zotero api', () => {
+describe('importing a book section from zotero api', () => {
   let hr
   let reference
   before(async () => {
