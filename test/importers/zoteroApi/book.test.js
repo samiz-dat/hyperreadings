@@ -22,7 +22,7 @@ const data = {
   publisher: 'Afterall',
   date: '2012',
   numPages: '147',
-  language: '',
+  language: 'english',
   ISBN: '978-1-84638-083-9 978-1-84638-084-6',
   shortTitle: 'Martha Rosler',
   url: 'a url',
