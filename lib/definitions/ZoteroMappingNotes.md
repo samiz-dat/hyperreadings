@@ -292,6 +292,7 @@ This is only within the types: `audioRecording` `book` `bookSection` `conference
 http://purl.org/spar/fabio/hasSequenceIdentifier
 
 TODO:
+probably map to Extent
 
 #### `ISBN`
 

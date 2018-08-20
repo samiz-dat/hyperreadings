@@ -14,10 +14,10 @@ const data = {
   ],
   abstractNote: 'a note describing the work',
   series: 'One work',
-  seriesNumber: '',
-  volume: '',
-  numberOfVolumes: '',
-  edition: '',
+  seriesNumber: '4',
+  volume: '1',
+  numberOfVolumes: '2',
+  edition: 'first edition',
   place: 'London',
   publisher: 'Afterall',
   date: '2012',
@@ -26,13 +26,12 @@ const data = {
   ISBN: '978-1-84638-083-9 978-1-84638-084-6',
   shortTitle: 'Martha Rosler',
   url: 'a url',
-  accessDate: '',
-  archive: '',
-  archiveLocation: '',
+  accessDate: '', // we will ignore this for now
   archive: 'A fake archive',
+  archiveLocation: 'Box 2',
   libraryCatalog: 'Library of Congress ISBN',
   callNumber: 'N6537.R582 A62 2012',
-  rights: '',
+  rights: 'a rights statement',
   extra: 'this is a bit of extra info',
   tags: [
     {
@@ -158,6 +157,10 @@ describe('importing a book from zotero api', () => {
       const agent = await item.heldBy()
       expect(await agent.get('rdfs:label')).to.eql(data.archive)
     })
+    it('sets archiveLocation as shelfMark on item', async () => {
+      const shelfMark = await item.getShelfMark()
+      expect(shelfMark).to.eql('Box 2')
+    })
   })
 
   context('with series level information present', () => {
@@ -174,21 +177,46 @@ describe('importing a book from zotero api', () => {
     })
   })
 
-  it('needs to address seriesNumber')
-  it('needs to address volume')
+  it('sets seriesNumber to seriesEnumeration on instance', async () => {
+    const seriesEnumeration = await reference.seriesEnumeration()
+    expect(seriesEnumeration).to.eql(data.seriesNumber)
+  })
+
+  it('sets edition to editionStatement on instance', async () => {
+    const editionStatement = await reference.editionStatement()
+    expect(editionStatement).to.eql(data.edition)
+  })
+
+  it('sets pages to extent on instance', async () => {
+    const extents = await reference.getExtents()
+    expect(extents).length.to.eql(2)
+    expect(extents).to.contain(data.pages)
+  })
+
+  it('sets volume to extent on instance', async () => {
+    const extents = await reference.getExtents()
+    expect(extents).length.to.eql(2)
+    expect(extents).to.contain(data.volume)
+  })
+
   it('needs to address numberOfVolumes')
-  it('needs to address edition')
-  it('needs to address pages')
-  it('needs to address language')
   it('needs to address accessDate')
-  it('needs to address archiveLocation')
+
+  it('sets language on the instance', async () => {
+    const language = await reference.language()
+    expect(language).to.equal(data.language)
+  })
 
   it('sets libraryCatalog as source', async () => {
     const source = await reference.source()
     expect(source).to.equal(data.libraryCatalog)
   })
 
-  it('needs to address rights')
+  it('set rights as copyrightRegistration', async () => {
+    const rights = await reference.rights()
+    expect(rights).to.equal(data.rights)
+  })
+
   it('sets extra as a note', async () => {
     const source = await reference.note()
     expect(source).to.equal(data.extra)
