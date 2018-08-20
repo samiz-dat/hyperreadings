@@ -32,7 +32,7 @@ const data = {
   libraryCatalog: 'Library of Congress ISBN',
   callNumber: 'N6537.R582 A62 2012',
   rights: '',
-  extra: '',
+  extra: 'this is a bit of extra info',
   tags: [
     {
       tag: 'Bowery in two inadequate descriptive systems',
@@ -178,7 +178,15 @@ describe('importing a book from zotero api', () => {
   it('needs to address accessDate')
   it('needs to address archive')
   it('needs to address archiveLocation')
-  it('needs to address libraryCatalog')
+
+  it('sets libraryCatalog as source', async () => {
+    const source = await reference.source()
+    expect(source).to.equal(data.libraryCatalog)
+  })
+
   it('needs to address rights')
-  it('needs to address extra')
+  it('sets extra as a note', async () => {
+    const source = await reference.note()
+    expect(source).to.equal(data.extra)
+  })
 })
