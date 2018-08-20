@@ -69,7 +69,7 @@ describe('importing a book section from zotero api', () => {
       firstName: 'Joanne',
       lastName: 'Shattock',
       name: 'Joanne Shattock',
-      role: 'marc:aut'
+      role: 'marcrel:aut'
     }])
   })
 

@@ -8,7 +8,26 @@ describe('basic zotero import behaviors', () => {
     hr = ramHyperReadings()
   })
   context('when there is a pre-existing contribution', () => {
-    it('does not unnecessarily create duplicate contributions')
+    it('does not unnecessarily create duplicate contributions', async () => {
+      const first = await hr.importZoteroReference({
+        itemType: 'The Promise of Happiness',
+        creators: [{
+          firstName: 'Sara',
+          lastName: 'Ahmed',
+          creatorType: 'author'
+        }]
+      })
+      const second = await hr.importZoteroReference({
+        itemType: 'book',
+        title: 'Queer phenomenology',
+        creators: [{
+          firstName: 'Sara',
+          lastName: 'Ahmed',
+          creatorType: 'author'
+        }]
+      })
+      expect((await first.get('bf:contribution')).name).to.eql((await second.get('bf:contribution')).name)
+    })
   })
   context('when there is a pre-existing person', () => {
     it('does not unnecessarily create a new Person, but links to existing matching person', async () => {
