@@ -7,8 +7,42 @@ describe('basic zotero import behaviors', () => {
   beforeEach(async () => {
     hr = ramHyperReadings()
   })
+  context('when there is a pre-existing contribution', () => {
+    it('does not unnecessarily create duplicate contributions')
+  })
   context('when there is a pre-existing person', () => {
-    it('does not unnecessarily create a new Person, but links to existing matching person')
+    it('does not unnecessarily create a new Person, but links to existing matching person', async () => {
+      await hr.importZoteroReference({
+        itemType: 'The Promise of Happiness',
+        creators: [{
+          firstName: 'Sara',
+          lastName: 'Ahmed',
+          creatorType: 'author'
+        }]
+      })
+      await hr.importZoteroReference({
+        itemType: 'book',
+        title: 'When Species Meet',
+        creators: [{
+          creatorType: 'author',
+          firstName: 'Donna',
+          lastName: 'Haraway'
+        }]
+      })
+      await hr.importZoteroReference({
+        itemType: 'book',
+        title: 'Thinking Through the Skin',
+        creators: [
+          {
+            firstName: 'Sara',
+            lastName: 'Ahmed',
+            creatorType: 'editor'
+          }
+        ]
+      })
+      const people = await hr.findPeople()
+      expect(people).to.have.length(2)
+    })
   })
   context('when there is a pre-existing series', () => {
     it('does not unnecessarily create a new series, but links to existing matching series', async () => {
