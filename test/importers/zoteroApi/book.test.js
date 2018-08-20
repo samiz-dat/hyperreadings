@@ -29,6 +29,7 @@ const data = {
   accessDate: '',
   archive: '',
   archiveLocation: '',
+  archive: 'A fake archive',
   libraryCatalog: 'Library of Congress ISBN',
   callNumber: 'N6537.R582 A62 2012',
   rights: '',
@@ -153,6 +154,10 @@ describe('importing a book from zotero api', () => {
       const shelfMark = await item.getShelfMark()
       expect(shelfMark).to.eql('N6537.R582 A62 2012')
     })
+    it('creates an agent with name of archive field and assigns it to heldBy field', async () => {
+      const agent = await item.heldBy()
+      expect(await agent.get('rdfs:label')).to.eql(data.archive)
+    })
   })
 
   context('with series level information present', () => {
@@ -176,7 +181,6 @@ describe('importing a book from zotero api', () => {
   it('needs to address pages')
   it('needs to address language')
   it('needs to address accessDate')
-  it('needs to address archive')
   it('needs to address archiveLocation')
 
   it('sets libraryCatalog as source', async () => {
