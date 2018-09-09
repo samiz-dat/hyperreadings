@@ -18,7 +18,7 @@ describe('Collection Node', () => {
         it('returns a stream of all items in the collection', async () => {
           const items = await collect(collection.stream())
           expect(items).to.have.length(4)
-          const expected = Array.from({length: 4}, (v, i) => `item${i}`)
+          const expected = Array.from({ length: 4 }, (v, i) => `item${i}`)
           expect(items).to.have.members(expected)
         })
       })
@@ -66,7 +66,7 @@ describe('Collection Node', () => {
         it('returns a stream of all items in the collection', async () => {
           const items = await collect(collection.stream())
           expect(items).to.have.length(4 * 6)
-          const expected = Array.from({length: 4 * 6}, (v, i) => `page${Math.floor(i / 6)}-item${i % 6}`)
+          const expected = Array.from({ length: 4 * 6 }, (v, i) => `page${Math.floor(i / 6)}-item${i % 6}`)
           expect(items).to.have.members(expected)
         })
 
@@ -83,7 +83,7 @@ describe('Collection Node', () => {
           const limit = 1
           const items = await collect(collection.stream({ limit }))
           expect(items).to.have.length(limit)
-          const expected = Array.from({length: limit}, (v, i) => `page${Math.floor(i / 6)}-item${i % 6}`)
+          const expected = Array.from({ length: limit }, (v, i) => `page${Math.floor(i / 6)}-item${i % 6}`)
           expect(items).to.have.members(expected)
         })
 

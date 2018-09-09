@@ -25,7 +25,7 @@ describe('markdownImporter', () => {
       })
     })
     it('has body with single section node', async () => {
-      const bodys = await hr.nodesByType('hr:body', {limit: 1})
+      const bodys = await hr.nodesByType('hr:body', { limit: 1 })
       const body = bodys[0]
       const expected = ['doco:Section']
       await body.iterate((node) => {
