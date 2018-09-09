@@ -15,7 +15,6 @@
     "lint:fix": "standard --fix",
     "test": "cross-env NODE_ENV=test mocha",
     "tdd": "cross-env NODE_ENV=test mocha -w",
-    "lint": "eslint .",
     "travis": "nyc npm run test",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls"
   },
