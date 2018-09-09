@@ -2,9 +2,69 @@
 import { expect } from 'chai'
 import { ramHyperReadings, collect } from '../helpers/general'
 
-describe('Collection Node', () => {
+describe.only('Collection Node', () => {
   let hr
   let collection
+
+  describe('.totalItems()', () => {
+    context('with no items', () => {
+      beforeEach(async () => {
+        hr = ramHyperReadings()
+        collection = await hr.createCollection('wonderful')
+      })
+      it('returns zero', async () => {
+        const total = await collection.totalItems()
+        expect(total).to.eql(0)
+      })
+    })
+    context('with no pagination', () => {
+      beforeEach(async () => {
+        hr = ramHyperReadings()
+        collection = await hr.createCollection('wonderful')
+        for (var i = 0; i < 4; i++) {
+          await collection.addItem(`item${i}`)
+        }
+      })
+      it('return the number of items within the collection', async () => {
+        const total = await collection.totalItems()
+        expect(total).to.eql(4)
+      })
+      it('increases when items are added', async () => {
+        await collection.addItem('new item')
+        const total = await collection.totalItems()
+        expect(total).to.eql(5)
+      })
+      it('decreases when items are removed')
+    })
+    context('with pagination', () => {
+      beforeEach(async () => {
+        hr = ramHyperReadings()
+        collection = await hr.createCollection('wonderful')
+        for (var i = 0; i < 4; i++) {
+          const page = await collection.addNewPage()
+          for (var j = 0; j < 6; j++) {
+            await page.addItem(`page${i}-item${j}`)
+          }
+        }
+      })
+      it('return the number of items within the collection, not the number of pages', async () => {
+        const total = await collection.totalItems()
+        expect(total).to.eql(24)
+      })
+      it('increases when items are added', async () => {
+        for (var i = 0; i < 2; i++) {
+          const page = await collection.addNewPage()
+          for (var j = 0; j < 6; j++) {
+            await page.addItem(`page${i}-item${j}`)
+          }
+        }
+        const total = await collection.totalItems()
+        expect(total).to.eql(36)
+      })
+      it('decreases when items are removed')
+    })
+  })
+
   describe('.stream()', () => {
     context('with no pagination', () => {
       before(async () => {
@@ -54,10 +114,8 @@ describe('Collection Node', () => {
         hr = ramHyperReadings()
         collection = await hr.createCollection('wonderful')
         for (var i = 0; i < 4; i++) {
-          // console.log('new page', i)
           const page = await collection.addNewPage()
           for (var j = 0; j < 6; j++) {
-            // console.log('new item', j)
             await page.addItem(`page${i}-item${j}`)
           }
         }
