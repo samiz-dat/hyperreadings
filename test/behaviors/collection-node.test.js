@@ -2,7 +2,7 @@
 import { expect } from 'chai'
 import { ramHyperReadings, collect } from '../helpers/general'
 
-describe.only('Collection Node', () => {
+describe('Collection Node', () => {
   let hr
   let collection
 
@@ -89,6 +89,13 @@ describe.only('Collection Node', () => {
           expect(items).to.have.length(2)
         })
       })
+      context('with opts.pages', () => {
+        it('has no effect', async () => {
+          const page = 1
+          const items = await collect(collection.stream({ page }))
+          expect(items).to.have.length(4)
+        })
+      })
     })
     context('no items', () => {
       before(async () => {
@@ -152,6 +159,30 @@ describe.only('Collection Node', () => {
           items.forEach((v, i) => {
             expect(v).to.match(new RegExp(`^page${Math.floor(i / 6)}-`))
           })
+        })
+      })
+      context('with opts.page', () => {
+        it('returns values from a specific page', async () => {
+          const items = await collect(collection.stream({ page: 2 }))
+          expect(items).to.have.length(6)
+          items.forEach((v, i) => {
+            expect(v).to.match(new RegExp(`^page2-`))
+          })
+        })
+        it('returns values from the first page when page = 0', async () => {
+          const items = await collect(collection.stream({ page: 0 }))
+          expect(items).to.have.length(6)
+          items.forEach((v, i) => {
+            expect(v).to.match(new RegExp(`^page0-`))
+          })
+        })
+        it('returns nothing when page is out of range (positive)', async () => {
+          const items = await collect(collection.stream({ page: 5 }))
+          expect(items).to.have.length(0)
+        })
+        it('returns nothing when page is out of range (negative)', async () => {
+          const items = await collect(collection.stream({ page: -5 }))
+          expect(items).to.have.length(0)
         })
       })
     })
