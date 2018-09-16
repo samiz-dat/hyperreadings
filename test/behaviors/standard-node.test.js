@@ -2,6 +2,20 @@
 import { expect } from 'chai'
 import { ramHyperReadings } from '../helpers/general'
 
+function auditHistory (hr) {
+  const keys = []
+  return new Promise((resolve, reject) => {
+    const stream = hr.graph.db.createHistoryStream()
+    stream.on('data', (data) => {
+      if (data.key.startsWith('spo/')) {
+        keys.push({ key: data.key.split('/').splice(2).join('/'), del: data.deleted })
+      }
+    })
+    stream.on('error', reject)
+    stream.on('end', () => resolve(keys))
+  })
+}
+
 describe('StandardNode', () => {
   let hr
   beforeEach(done => {
@@ -260,7 +274,428 @@ describe('StandardNode', () => {
           expect(newProps).to.deep.eql(output)
         })
       })
-      it('does not delete properties unnecessarily')
+    })
+    context('with a node that has properties already set', () => {
+      it('does not overwrite values unnecessarily (arrays)', async () => {
+        const work = await hr.createNode('frbr:Work')
+        await work.add('frbr:creator', 'benjamin')
+        await work.add('frbr:creator', 'sean')
+        await work.add('frbr:creator', 'others')
+        await work.update({ 'frbr:creator': [ 'benjamin' ] })
+        const history = await auditHistory(hr)
+        expect(history).to.deep.eql([
+          {
+            del: false,
+            key: 'rdf:type/frbr:Work'
+          },
+          {
+            del: false,
+            key: 'frbr:creator/"benjamin"'
+          },
+          {
+            del: false,
+            key: 'frbr:creator/"sean"'
+          },
+          {
+            del: false,
+            key: 'frbr:creator/"others"'
+          },
+          {
+            del: true,
+            key: 'frbr:creator/"others"'
+          },
+          {
+            del: true,
+            key: 'frbr:creator/"sean"'
+          }
+        ])
+      })
+      it('does not overwrite values unnecessarily (empty)', async () => {
+        const work = await hr.createNode('frbr:Work')
+        await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        await work.set('rdf:value', 12)
+        const version = await hr.createNode('frbr:Expression')
+        await work.set('frbr:realization', version)
+        await work.update({})
+        const history = await auditHistory(hr)
+        expect(history).to.deep.eql([
+          { key: 'rdf:type/frbr:Work', del: false },
+          { key: 'dcterms:title/"hyper-readings: Readme.md"', del: false },
+          { key: 'rdf:value/"12"^^xsd:decimal', del: false },
+          { key: 'rdf:type/frbr:Expression', del: false },
+          { key: 'frbr:realization/' + version.name.replace('hr://', '_:'), del: false },
+          { key: 'frbr:realization/' + version.name.replace('hr://', '_:'), del: true },
+          { key: 'dcterms:title/"hyper-readings: Readme.md"', del: true },
+          { key: 'rdf:value/"12"^^xsd:decimal', del: true }
+        ])
+      })
+      it('does not overwrite values unnecessarily (same values)', async () => {
+        const work = await hr.createNode('frbr:Work')
+        await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        await work.set('rdf:value', 12)
+        const version = await hr.createNode('frbr:Expression')
+        await work.set('frbr:realization', version)
+        await work.update({
+          'rdf:value': 12,
+          'dcterms:title': 'hyper-readings: Readme.md',
+          'frbr:realization': version
+        })
+        const history = await auditHistory(hr)
+        expect(history).to.deep.eql([
+          { key: 'rdf:type/frbr:Work', del: false },
+          { key: 'dcterms:title/"hyper-readings: Readme.md"', del: false },
+          { key: 'rdf:value/"12"^^xsd:decimal', del: false },
+          { key: 'rdf:type/frbr:Expression', del: false },
+          { key: 'frbr:realization/' + version.name.replace('hr://', '_:'), del: false }
+        ])
+      })
+      it('does not overwrite values unnecessarily (number)', async () => {
+        const work = await hr.createNode('frbr:Work')
+        await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        await work.set('rdf:value', 12)
+        const version = await hr.createNode('frbr:Expression')
+        await work.set('frbr:realization', version)
+        await work.update({
+          'rdf:value': 2000.0002,
+          'dcterms:title': 'hyper-readings: Readme.md',
+          'frbr:realization': version
+        })
+        const history = await auditHistory(hr)
+        expect(history).to.deep.eql([
+          { key: 'rdf:type/frbr:Work', del: false },
+          { key: 'dcterms:title/"hyper-readings: Readme.md"', del: false },
+          { key: 'rdf:value/"12"^^xsd:decimal', del: false },
+          { key: 'rdf:type/frbr:Expression', del: false },
+          { key: 'frbr:realization/' + version.name.replace('hr://', '_:'), del: false },
+          { key: 'rdf:value/"12"^^xsd:decimal', del: true },
+          { key: 'rdf:value/"2000.0002"^^xsd:decimal', del: false }
+        ])
+      })
+      it('does not overwrite values unnecessarily (string)', async () => {
+        const work = await hr.createNode('frbr:Work')
+        await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        await work.set('rdf:value', 12)
+        const version = await hr.createNode('frbr:Expression')
+        await work.set('frbr:realization', version)
+        await work.update({
+          'rdf:value': 12,
+          'dcterms:title': 'A new title',
+          'frbr:realization': version
+        })
+        const history = await auditHistory(hr)
+        expect(history).to.deep.eql([
+          { key: 'rdf:type/frbr:Work', del: false },
+          { key: 'dcterms:title/"hyper-readings: Readme.md"', del: false },
+          { key: 'rdf:value/"12"^^xsd:decimal', del: false },
+          { key: 'rdf:type/frbr:Expression', del: false },
+          { key: 'frbr:realization/' + version.name.replace('hr://', '_:'), del: false },
+          { key: 'dcterms:title/"hyper-readings: Readme.md"', del: true },
+          { key: 'dcterms:title/"A new title"', del: false }
+        ])
+      })
+      it('does not overwrite values unnecessarily (other nodes)', async () => {
+        const work = await hr.createNode('frbr:Work')
+        await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        await work.set('rdf:value', 12)
+        const version = await hr.createNode('frbr:Expression')
+        await work.set('frbr:realization', version)
+        const updatedVersion = await hr.createNode('frbr:Expression')
+        await work.update({
+          'rdf:value': 12,
+          'dcterms:title': 'hyper-readings: Readme.md',
+          'frbr:realization': updatedVersion
+        })
+        const history = await auditHistory(hr)
+        expect(history).to.deep.eql([
+          {
+            key: 'rdf:type/frbr:Work',
+            del: false
+          },
+          {
+            key: 'dcterms:title/"hyper-readings: Readme.md"',
+            del: false
+          },
+          {
+            key: 'rdf:value/"12"^^xsd:decimal',
+            del: false
+          },
+          {
+            key: 'rdf:type/frbr:Expression',
+            del: false
+          },
+          {
+            key: 'frbr:realization/' + version.name.replace('hr://', '_:'),
+            del: false
+          },
+          {
+            key: 'rdf:type/frbr:Expression',
+            del: false
+          },
+          {
+            key: 'frbr:realization/' + version.name.replace('hr://', '_:'),
+            del: true
+          },
+          {
+            key: 'frbr:realization/' + updatedVersion.name.replace('hr://', '_:'),
+            del: false
+          }
+        ])
+      })
+    })
+  })
+
+  describe('#merge(properties)', () => {
+    context('with a new standard node', () => {
+      const cases = [
+        {
+          name: 'empty',
+          input: {},
+          output: {}
+        },
+        {
+          name: 'simple',
+          input: { 'dcterms:title': 'hyper-readings: Readme.md' },
+          output: { 'dcterms:title': 'hyper-readings: Readme.md' }
+        },
+        {
+          name: 'array',
+          input: { 'frbr:creator': ['sean', 'benjamin', 'others'] },
+          output: { 'frbr:creator': ['sean', 'benjamin', 'others'] }
+        },
+        {
+          name: 'node',
+          input: { 'frbr:realization': { name: 'hr://node' } },
+          output: { 'frbr:realization': { name: 'hr://node' } }
+        },
+        {
+          name: 'literal',
+          input: { 'rdf:value': 12 },
+          output: { 'rdf:value': 12 }
+        }
+      ]
+      cases.forEach((tc) => {
+        it(`adds object’s key/value pairs to node as predicate -> object (${tc.name})`, async () => {
+          const output = Object.assign({ 'rdf:type': { name: 'frbr:Work' } }, tc.output)
+          const work = await hr.createNode('frbr:Work')
+          await work.merge(tc.input)
+          const newProps = await work.properties()
+          expect(newProps).to.deep.eql(output)
+        })
+      })
+    })
+    context('with an existing node', () => {
+      let work = null
+      const cases = [
+        {
+          name: 'empty',
+          input: {},
+          output: {}
+        },
+        {
+          name: 'simple',
+          input: { 'dcterms:title': 'Another title' },
+          output: { 'dcterms:title': 'Another title' }
+        },
+        {
+          name: 'array',
+          input: { 'frbr:creator': ['different', 'authors'] },
+          output: { 'frbr:creator': ['different', 'authors'] }
+        },
+        {
+          name: 'node',
+          input: { 'frbr:realization': { name: 'hr://blank' } },
+          output: { 'frbr:realization': { name: 'hr://blank' } }
+        },
+        {
+          name: 'literal',
+          input: { 'rdf:value': 44 },
+          output: { 'rdf:value': 44 }
+        }
+      ]
+      beforeEach(async () => {
+        work = await hr.createNode('frbr:Work')
+        await work.add('frbr:creator', 'benjamin')
+        await work.add('frbr:creator', 'sean')
+        await work.add('frbr:creator', 'others')
+        await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        await work.set('rdf:value', 12)
+        const version = await hr.createNode('frbr:Expression')
+        await work.set('frbr:realization', version)
+      })
+      cases.forEach((tc) => {
+        it(`merges object’s key/value pairs to node as predicate -> object (${tc.name})`, async () => {
+          const oldProps = await work.properties()
+          const output = Object.assign(oldProps, tc.output)
+          await work.merge(tc.input)
+          const newProps = await work.properties()
+          expect(newProps).to.deep.eql(output)
+        })
+      })
+    })
+
+    context('with a node that has properties already set', () => {
+      it('does not overwrite values unnecessarily (arrays)', async () => {
+        const work = await hr.createNode('frbr:Work')
+        await work.add('frbr:creator', 'benjamin')
+        await work.add('frbr:creator', 'sean')
+        await work.add('frbr:creator', 'others')
+        await work.merge({ 'frbr:creator': [ 'benjamin' ] })
+        const history = await auditHistory(hr)
+        expect(history).to.deep.eql([
+          {
+            del: false,
+            key: 'rdf:type/frbr:Work'
+          },
+          {
+            del: false,
+            key: 'frbr:creator/"benjamin"'
+          },
+          {
+            del: false,
+            key: 'frbr:creator/"sean"'
+          },
+          {
+            del: false,
+            key: 'frbr:creator/"others"'
+          },
+          {
+            del: true,
+            key: 'frbr:creator/"others"'
+          },
+          {
+            del: true,
+            key: 'frbr:creator/"sean"'
+          }
+        ])
+      })
+      it('does not overwrite values unnecessarily (empty)', async () => {
+        const work = await hr.createNode('frbr:Work')
+        await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        await work.set('rdf:value', 12)
+        const version = await hr.createNode('frbr:Expression')
+        await work.set('frbr:realization', version)
+        await work.merge({})
+        const history = await auditHistory(hr)
+        expect(history).to.deep.eql([
+          { key: 'rdf:type/frbr:Work', del: false },
+          { key: 'dcterms:title/"hyper-readings: Readme.md"', del: false },
+          { key: 'rdf:value/"12"^^xsd:decimal', del: false },
+          { key: 'rdf:type/frbr:Expression', del: false },
+          { key: 'frbr:realization/' + version.name.replace('hr://', '_:'), del: false }
+        ])
+      })
+      it('does not overwrite values unnecessarily (same values)', async () => {
+        const work = await hr.createNode('frbr:Work')
+        await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        await work.set('rdf:value', 12)
+        const version = await hr.createNode('frbr:Expression')
+        await work.set('frbr:realization', version)
+        await work.merge({
+          'rdf:value': 12,
+          'dcterms:title': 'hyper-readings: Readme.md',
+          'frbr:realization': version
+        })
+        const history = await auditHistory(hr)
+        expect(history).to.deep.eql([
+          { key: 'rdf:type/frbr:Work', del: false },
+          { key: 'dcterms:title/"hyper-readings: Readme.md"', del: false },
+          { key: 'rdf:value/"12"^^xsd:decimal', del: false },
+          { key: 'rdf:type/frbr:Expression', del: false },
+          { key: 'frbr:realization/' + version.name.replace('hr://', '_:'), del: false }
+        ])
+      })
+      it('does not overwrite values unnecessarily (number)', async () => {
+        const work = await hr.createNode('frbr:Work')
+        await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        await work.set('rdf:value', 12)
+        const version = await hr.createNode('frbr:Expression')
+        await work.set('frbr:realization', version)
+        await work.merge({
+          'rdf:value': 2000.0002,
+          'dcterms:title': 'hyper-readings: Readme.md',
+          'frbr:realization': version
+        })
+        const history = await auditHistory(hr)
+        expect(history).to.deep.eql([
+          { key: 'rdf:type/frbr:Work', del: false },
+          { key: 'dcterms:title/"hyper-readings: Readme.md"', del: false },
+          { key: 'rdf:value/"12"^^xsd:decimal', del: false },
+          { key: 'rdf:type/frbr:Expression', del: false },
+          { key: 'frbr:realization/' + version.name.replace('hr://', '_:'), del: false },
+          { key: 'rdf:value/"12"^^xsd:decimal', del: true },
+          { key: 'rdf:value/"2000.0002"^^xsd:decimal', del: false }
+        ])
+      })
+      it('does not overwrite values unnecessarily (string)', async () => {
+        const work = await hr.createNode('frbr:Work')
+        await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        await work.set('rdf:value', 12)
+        const version = await hr.createNode('frbr:Expression')
+        await work.set('frbr:realization', version)
+        await work.merge({
+          'rdf:value': 12,
+          'dcterms:title': 'A new title',
+          'frbr:realization': version
+        })
+        const history = await auditHistory(hr)
+        expect(history).to.deep.eql([
+          { key: 'rdf:type/frbr:Work', del: false },
+          { key: 'dcterms:title/"hyper-readings: Readme.md"', del: false },
+          { key: 'rdf:value/"12"^^xsd:decimal', del: false },
+          { key: 'rdf:type/frbr:Expression', del: false },
+          { key: 'frbr:realization/' + version.name.replace('hr://', '_:'), del: false },
+          { key: 'dcterms:title/"hyper-readings: Readme.md"', del: true },
+          { key: 'dcterms:title/"A new title"', del: false }
+        ])
+      })
+      it('does not overwrite values unnecessarily (other nodes)', async () => {
+        const work = await hr.createNode('frbr:Work')
+        await work.set('dcterms:title', 'hyper-readings: Readme.md')
+        await work.set('rdf:value', 12)
+        const version = await hr.createNode('frbr:Expression')
+        await work.set('frbr:realization', version)
+        const updatedVersion = await hr.createNode('frbr:Expression')
+        await work.merge({
+          'rdf:value': 12,
+          'dcterms:title': 'hyper-readings: Readme.md',
+          'frbr:realization': updatedVersion
+        })
+        const history = await auditHistory(hr)
+        expect(history).to.deep.eql([
+          {
+            key: 'rdf:type/frbr:Work',
+            del: false
+          },
+          {
+            key: 'dcterms:title/"hyper-readings: Readme.md"',
+            del: false
+          },
+          {
+            key: 'rdf:value/"12"^^xsd:decimal',
+            del: false
+          },
+          {
+            key: 'rdf:type/frbr:Expression',
+            del: false
+          },
+          {
+            key: 'frbr:realization/' + version.name.replace('hr://', '_:'),
+            del: false
+          },
+          {
+            key: 'rdf:type/frbr:Expression',
+            del: false
+          },
+          {
+            key: 'frbr:realization/' + version.name.replace('hr://', '_:'),
+            del: true
+          },
+          {
+            key: 'frbr:realization/' + updatedVersion.name.replace('hr://', '_:'),
+            del: false
+          }
+        ])
+      })
     })
   })
 
