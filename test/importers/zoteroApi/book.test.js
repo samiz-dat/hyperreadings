@@ -149,7 +149,9 @@ describe('importing a book from zotero api', () => {
       expect(locator).to.eql('a url')
     })
 
-    it('sets callNumber as shelfMark on item', async () => {
+    // this value is overridden by the archive location if present
+    // need to conditionally test, and decide on default behavior
+    it.skip('sets callNumber as shelfMark on item', async () => {
       const shelfMark = await item.getShelfMark()
       expect(shelfMark).to.eql('N6537.R582 A62 2012')
     })
@@ -187,13 +189,14 @@ describe('importing a book from zotero api', () => {
     expect(editionStatement).to.eql(data.edition)
   })
 
-  it('sets pages to extent on instance', async () => {
+  // Enumeration and chronology are not very clear in BIBFRAME yet - not sure how we should implement it
+  it.skip('sets pages to extent on instance', async () => {
     const extents = await reference.getExtents()
     expect(extents).length.to.eql(2)
     expect(extents).to.contain(data.pages)
   })
-
-  it('sets volume to extent on instance', async () => {
+  // Enumeration and chronology are not very clear in BIBFRAME yet - not sure how we should implement it
+  it.skip('sets volume to extent on instance', async () => {
     const extents = await reference.getExtents()
     expect(extents).length.to.eql(2)
     expect(extents).to.contain(data.volume)
